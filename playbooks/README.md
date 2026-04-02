@@ -1,25 +1,25 @@
 Playbooks for AI Agents
 =======================
 
-These playbooks define how I steer LLM behavior across three explicit project phases by describing rules for each role:
+With these playbooks I steer LLM behavior across three explicit project phases by defining rules for each role:
 
-1. requirements engineering
-2. solution architecture
-3. software development
+1. Requirements Engineering
+2. Solution Architecture
+3. Software Development
 
 Each playbook is phase-specific and acts as an operating guide for one role at a time.
 
-I intentionally run sessions in a single mode and switch modes consciously by loading the matching playbook
+I intentionally run sessions in a single mode and switch modes deliberately by loading the matching playbook
 (`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or `software_development_playbook.md`).
 This keeps the active assistant in scope, avoids mixed responsibilities, and helps control context size.
 
-These playbooks are similar to modern `SKILL.md`-style agent skills (see [Agent Skills](https://agentskills.io/home)),
-but they are organized as phase-oriented, single-mode guides.
+These playbooks are similar to modern `SKILL.md`-style skills (see [Agent Skills](https://agentskills.io/home)), but
+they are organized as phase-oriented, single-mode guides.
 
 Kiro
 ----
 
-As of 2026-04, I use the playbooks as global "AGENT STEERING & SKILLS" in Kiro and load them with commands like
+As of 2026-04, I add the playbooks to global "AGENT STEERING & SKILLS" in Kiro and load them with commands like
 `#solution_architecture` at the start of each new session.
 
 The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This keeps the
@@ -34,7 +34,7 @@ inclusion: manual
 Antigravity
 -----------
 
-As of 2026-04 I use workflows to load the playbooks in Antigravity. You can adapt the example below for each playbook.
+As of 2026-04, I use workflows to load the playbooks in Antigravity. You can adapt the example below for each playbook.
 
 The example lets you load `solution_architecture_playbook.md` with `/architecture`, and you would use this loading
 command at the start of each new conversation.
