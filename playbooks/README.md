@@ -20,7 +20,7 @@ Kiro
 ----
 
 As of 2026-04, I add the playbooks to global "AGENT STEERING & SKILLS" in Kiro and load them with commands like
-`#solution_architecture` at the start of each new session.
+`#solution_architecture_playbook.md` at the start of each new session.
 
 The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This keeps the
 context window smaller and, more importantly, enforces a clear role for the active assistant.
