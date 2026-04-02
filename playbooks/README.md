@@ -8,17 +8,17 @@ phase-specific and acts as an operating guide for one role at a time.
 I intentionally run sessions in a single mode and switch modes consciously by loading the matching
 playbook (`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or
 `software_development_playbook.md`). This keeps the agent focused, avoids mixed responsibilities,
-and helps control context size. Conceptually, these playbooks are similar to modern agent skills
-(`SKILL.md`-style guidance), but organized as phase-oriented playbooks.
+and helps control context size. Conceptually, these playbooks are similar to modern `SKILL.md`-
+style agent skills, but organized as phase-oriented playbooks.
 
 Kiro
 ----
 
-As of 2026-04 I add the playbooks as global "AGENT STEERING & SKILLS" in Kiro and load them with commands lik
+As of 2026-04, I use the playbooks as global "AGENT STEERING & SKILLS" in Kiro and load them with commands like
 `#solution_architecture` at the start of each new session.
 
-The following header is added to the top of each playbook to prevent automatic loading of all playbooks. One hand this
-keeps the context window smaller, but - more importantly - it enforces a clear role for the agents.
+The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This
+keeps the context window smaller and, more importantly, enforces a clear role for the agent.
 
 ```
 ---
@@ -31,8 +31,8 @@ Antigravity
 
 As of 2026-04 I use workflows to load the playbooks in Antigravity. You can adapt the example below for each playbook.
 
-The example lets you load solution_architecture_playbook.md with `/architecture` and you would use this loading command
-at the start of each new conversation.
+The example lets you load `solution_architecture_playbook.md` with `/architecture`, and you would use this loading
+command at the start of each new conversation.
 
 ```
 ---
