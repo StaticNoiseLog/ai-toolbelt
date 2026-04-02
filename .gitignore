@@ -41,3 +41,19 @@ out/
 
 ### Apple's Desktop Services Store ###
 .DS_Store
+
+### Antigravity ###
+.agent/
+test*.log
+build*.log
+build*.txt
+deps*.txt
+output*.txt
+
+### Kiro ###
+.kiro/
+
+### Local environment files ###
+.env
+.env.*
+!.env.example
