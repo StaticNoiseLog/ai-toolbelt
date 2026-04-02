@@ -9,8 +9,8 @@ I intentionally run sessions in a single mode and switch modes consciously by lo
 `requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or `software_development_playbook.md`).
 This keeps the agent focused, avoids mixed responsibilities, and helps control context size.
 
-Conceptually, these playbooks are similar to modern `SKILL.md`-style agent skills (
-see [Agent Skills](https://agentskills.io/home)), but organized as phase-oriented playbooks.
+These playbooks are similar to modern `SKILL.md`-style agent skills (see [Agent Skills](https://agentskills.io/home)),
+but they are organized as phase-oriented, single-mode guides.
 
 Kiro
 ----
