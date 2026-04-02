@@ -1,7 +1,7 @@
 Playbooks for AI Agents
 =======================
 
-With these playbooks, I steer LLM behavior across three explicit project phases by defining rules for each role:
+With these playbooks, I steer AI agent behavior across three explicit project phases by defining rules for each role:
 
 1. Requirements Engineering
 2. Solution Architecture
