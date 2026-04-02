@@ -1,7 +1,15 @@
 Playbooks for AI Agents
 =======================
 
-TODO
+These playbooks define how I collaborate with coding LLMs across three explicit project phases:
+requirements engineering, solution architecture, and software development. Each playbook is
+phase-specific and acts as an operating guide for one role at a time.
+
+I intentionally run sessions in a single mode and switch modes consciously by loading the matching
+playbook (`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or
+`software_development_playbook.md`). This keeps the agent focused, avoids mixed responsibilities,
+and helps control context size. Conceptually, these playbooks are similar to modern agent skills
+(`SKILL.md`-style guidance), but organized as phase-oriented playbooks.
 
 Kiro
 ----
