@@ -1,13 +1,17 @@
 Playbooks for AI Agents
 =======================
 
-These playbooks define how I collaborate with coding LLMs across three explicit project phases: requirements
-engineering, solution architecture, and software development. Each playbook is phase-specific and acts as an operating
-guide for one role at a time.
+These playbooks define how I steer LLM behavior across three explicit project phases by describing rules for each role:
+
+1. requirements engineering
+2. solution architecture
+3. software development
+
+Each playbook is phase-specific and acts as an operating guide for one role at a time.
 
 I intentionally run sessions in a single mode and switch modes consciously by loading the matching playbook
 (`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or `software_development_playbook.md`).
-This keeps the agent focused, avoids mixed responsibilities, and helps control context size.
+This keeps the active assistant in scope, avoids mixed responsibilities, and helps control context size.
 
 These playbooks are similar to modern `SKILL.md`-style agent skills (see [Agent Skills](https://agentskills.io/home)),
 but they are organized as phase-oriented, single-mode guides.
@@ -19,7 +23,7 @@ As of 2026-04, I use the playbooks as global "AGENT STEERING & SKILLS" in Kiro a
 `#solution_architecture` at the start of each new session.
 
 The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This keeps the
-context window smaller and, more importantly, enforces a clear role for the agent.
+context window smaller and, more importantly, enforces a clear role for the active assistant.
 
 ```
 ---
