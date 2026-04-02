@@ -1,15 +1,16 @@
 Playbooks for AI Agents
 =======================
 
-These playbooks define how I collaborate with coding LLMs across three explicit project phases:
-requirements engineering, solution architecture, and software development. Each playbook is
-phase-specific and acts as an operating guide for one role at a time.
+These playbooks define how I collaborate with coding LLMs across three explicit project phases: requirements
+engineering, solution architecture, and software development. Each playbook is phase-specific and acts as an operating
+guide for one role at a time.
 
-I intentionally run sessions in a single mode and switch modes consciously by loading the matching
-playbook (`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or
-`software_development_playbook.md`). This keeps the agent focused, avoids mixed responsibilities,
-and helps control context size. Conceptually, these playbooks are similar to modern `SKILL.md`-
-style agent skills, but organized as phase-oriented playbooks.
+I intentionally run sessions in a single mode and switch modes consciously by loading the matching playbook (
+`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or `software_development_playbook.md`).
+This keeps the agent focused, avoids mixed responsibilities, and helps control context size.
+
+Conceptually, these playbooks are similar to modern `SKILL.md`-style agent skills (
+see [Agent Skills](https://agentskills.io/home)), but organized as phase-oriented playbooks.
 
 Kiro
 ----
@@ -17,8 +18,8 @@ Kiro
 As of 2026-04, I use the playbooks as global "AGENT STEERING & SKILLS" in Kiro and load them with commands like
 `#solution_architecture` at the start of each new session.
 
-The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This
-keeps the context window smaller and, more importantly, enforces a clear role for the agent.
+The following header is added to the top of each playbook to prevent automatic loading of all playbooks. This keeps the
+context window smaller and, more importantly, enforces a clear role for the agent.
 
 ```
 ---
