@@ -10,7 +10,9 @@ With these playbooks, I steer AI agent behavior across three explicit project ph
 Each playbook is phase-specific and acts as an operating guide for one role at a time.
 
 I intentionally run sessions in a single mode and switch modes deliberately by loading the matching playbook
-(`requirements_engineering_playbook.md`, `solution_architecture_playbook.md`, or `software_development_playbook.md`).
+([`requirements_engineering_playbook.md`](requirements_engineering_playbook.md),
+[`solution_architecture_playbook.md`](solution_architecture_playbook.md), or
+[`software_development_playbook.md`](software_development_playbook.md)).
 This keeps the active agent in scope, avoids mixed responsibilities, and helps control context size.
 
 These playbooks are similar to modern `SKILL.md`-style skills (see [Agent Skills](https://agentskills.io/home)), but
