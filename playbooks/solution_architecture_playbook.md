@@ -90,7 +90,7 @@ Use established patterns when they fit the solution and name them explicitly. Ex
 - Modular Monolith
 - Peer-to-Peer
 - Pipes and Filters
-- Presentation-Abstraction-Control (PAC) 
+- Presentation-Abstraction-Control (PAC)
 - Publish-Subscribe
 - RESTful Architecture
 - SAM (State-Action-Model): Helps manage the application state and reason about temporal aspects with precision and clarity. Modern Software Engineering practices are essentially based on Functions (Actions) and Types which encourage a sprawl of unstructured assignments and event handlers. SAM's founding principle is that State Mutations must be first class citizens of the programming model. Once that principle is accepted, proper temporal semantics can be articulated. See https://sam.js.org/.
@@ -120,17 +120,23 @@ Avoid:
 - Fragility: changes break unrelated parts
 - Immobility: components are hard to reuse in another application because they cannot be disentangled from the current application
 - Testing oversight: not considering testing and quality assurance from the start
+- Implicit defaults: relying on framework defaults for timeouts, retry counts, or connection limits without documenting them
+- Ambiguous failure semantics: not defining what happens when an operation partially succeeds or produces an ambiguous outcome (e.g., timeout on a non-idempotent call)
 
 
 ## Architecture Process
 
 Architecture is the partitioning of a whole into parts, with specific relations among the parts. Follow these phases to develop the solution architecture.
 
+Important: These phases provide structure, but architecture is not strictly sequential. Insights from later phases often feed back into earlier ones. For example, component design (Phase 3) may reveal missing requirements (Phase 1), or risk assessment (Phase 5) may require changes to the component architecture (Phase 3). Embrace this iteration — it produces better architectures than a rigid waterfall through the phases.
+
 ### Phase 1: Understand Requirements
 
 - Study the Product Requirements Document (PRD) in `docs/requirements/prd.md`: internalize all functional requirements, quality attributes, business constraints, and technical constraints
 - Review the project glossary in `docs/requirements/glossary.md`: use the ubiquitous language of the project
 - Elicit any missing information required for solution architecture
+- Present open questions to the user grouped by topic, with options where applicable, so the user can make informed decisions
+- Expect iteration: architectural analysis often reveals gaps or ambiguities in requirements; if this happens, ask the user to update them before proceeding
 
 ### Phase 2: Define System Context and Boundaries
 
@@ -147,6 +153,8 @@ Architecture is the partitioning of a whole into parts, with specific relations 
 - Design integration patterns and protocols for external systems
 - Diagram how critical data entities flow through the system
 - Plan data architecture and storage strategies, addressing data consistency and transaction requirements
+- Define state machines for entities with complex lifecycles; document all valid transitions, guards, and side effects
+- Address multi-instance coordination explicitly: work distribution, locking, idempotency, and stale-state recovery
 - Use UML diagrams for component architecture visualization
 - Map out high-level interactions (e.g., sequence diagrams for key flows)
 - Document specific technology choices when mandated by requirements, including rationale
@@ -163,12 +171,14 @@ Architecture is the partitioning of a whole into parts, with specific relations 
 - Design deployment topology (on-prem, cloud, hybrid) and infrastructure requirements
 - Plan configuration management and environment strategies (dev, test, prod)
 - Address maintenance and support requirements
+- Define a timezone policy: specify what timezone is used at each layer (database, API, internal code, presentation) and how conversions are handled
 
 ### Phase 5: Assess Risks and Validate
 
 - Identify potential issues (technical, operational, security, vendor, etc.)
 - Document mitigations and residual risks
 - Validate the architecture against all functional requirements, quality attributes, and constraints
+- Produce a requirements traceability matrix mapping every requirement to its architectural coverage
 - Test architectural assumptions with stakeholders
 - Conduct architecture reviews with relevant experts
 
@@ -206,8 +216,10 @@ Typical deliverables include:
 - Sequence diagrams for main control flows
 - Deployment diagrams
 - Interface specifications
+- Configuration inventory: a complete list of all environment variables and configuration parameters with descriptions and defaults
 - UX artifacts (user flows, wireframes) when applicable
 - Risk register
+- Requirements traceability matrix
 - Deployment and operational guidance
 - Implementation roadmap and sequencing
 
@@ -216,4 +228,4 @@ Typical deliverables include:
 
 Be ready to revisit and adjust the architecture as the project evolves.
 
-Your architecture is not just a technical specification—it is a blueprint for building a successful system that delivers business value while maintaining quality, security, and operational excellence. Follow this playbook diligently to create architectures that stand the test of time and enable long-term success.
+Your architecture is not just a technical specification — it is a blueprint for building a successful system that delivers business value while maintaining quality, security, and operational excellence. Follow this playbook diligently to create architectures that stand the test of time and enable long-term success.
