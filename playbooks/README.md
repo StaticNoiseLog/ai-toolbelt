@@ -79,6 +79,8 @@ The playbooks do not go into much detail about GUI design. But once the requirem
 the later stages of solution architecture, you can use a prompt like the following to generate a GUI specification and,
 if you like, take that to a tool like [Google's Stitch](https://stitch.withgoogle.com/).
 
-`Create a GUI wireframe spec covering: general constraints, navigation, screen inventory (purpose + ASCII layout +
+```
+Create a GUI wireframe spec covering: general constraints, navigation, screen inventory (purpose + ASCII layout +
 components list per screen), screen flow diagram, status definitions with colors, role-based visibility matrix,
-implementer notes. Derive from requirements; mark additions as optional.`
+implementer notes. Derive from requirements; mark additions as optional.
+```
