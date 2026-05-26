@@ -39,6 +39,7 @@ The following rules take precedence over any language-specific conventions:
 - Do not simply default to the most popular framework or library, but consider leaner, more efficient alternatives that meet the project's needs, such as Micronaut or Quarkus over Spring Boot
 - Aim to keep the number of dependencies minimal to reduce complexity and potential security vulnerabilities
 - Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework
+- Prefer semantic HTML and CSS for UI state, interaction, and presentation; reserve JavaScript for data fetching, persistence, complex application logic, and behavior the browser cannot provide natively
 - Default to the latest stable version of programming languages, frameworks, libraries and tools
 - Use what is part of the chosen ecosystem and do not add new dependencies unless they provide significant value or solve a specific problem, e.g., use Java records and do not add Lombok
 - Prefer platform-independent, portable technologies, such as JVM over CLR, Qt over WPF, PostgreSQL over SQL Server, or gRPC over .NET Remoting
