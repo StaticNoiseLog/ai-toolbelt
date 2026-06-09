@@ -22,6 +22,7 @@ When you cannot make a well-informed decision regarding technology selection or 
 - Write idiomatic code and use modern language features
 - Use established conventions for a project's directory structure and file organization, such as what Spring Initializr generates for Java projects, or Rust's Cargo conventions
 - Follow established patterns for comments and documentation: Javadoc, KDoc, rustdoc, JSDoc, docstrings, OpenAPI, etc.
+- Default to US English spelling in all identifiers, comments, and documentation (e.g., "modeled", "color", "initialize"), not UK spelling
 - Follow semantic versioning (SemVer)
 
 The following rules take precedence over any language-specific conventions:
