@@ -266,6 +266,10 @@ Requirements must be reviewed before implementation:
 
 ## Writing Guidelines
 
+### Language and Spelling
+
+- Default to US English spelling in all requirements text, identifiers, and documentation (e.g., "modeled", "color", "initialize"), not UK spelling
+
 ### Value Focus
 
 - Express technical stories in business value terms, for example: Instead of "Add database pooling" (technical solution) write "Improve user retention with short page load times" (what the user actually wants)

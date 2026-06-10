@@ -199,6 +199,8 @@ Use lowercase snake_case naming convention for all directories and file names.
 
 Choose clear, descriptive file names for new files you create.
 
+Default to US English spelling in all architecture text, diagrams, identifiers, and documentation (e.g., "modeled", "color", "initialize"), not UK spelling.
+
 The following are standard names for key documents:
 
 - Product Requirements Document (PRD): `docs/requirements/prd.md`
