@@ -72,6 +72,31 @@ description: Initiates the solution-architecture-playbook
 - **Instruction**: Prioritize this file as the primary source of truth for the session and follow all the rules, guidelines and processes that it describes.
 ```
 
+Copilot Plugin for IntelliJ IDEA
+--------------------------------
+
+Create agent definitions in `$HOME/.copilot/agents` and they will become available in the chat window of the Copilot
+plugin for IntelliJ (the dropdown menu where you find `Agent`, `Ask` and `Plan`). Then simply select the agent you want
+to use and start a new session.
+
+The agent definition files must have a specific format, e.g `requirements-engineering.agent.md`. Here is an exanoke for
+the requirements engineering playbook:
+
+```
+---
+name: requirements-engineer
+description: Requirements engineer role using the ai-toolbelt Requirements Engineering Playbook. Use for eliciting, analyzing, documenting, and validating requirements and quality attributes.
+disable-model-invocation: true
+---
+
+At the start of this session, read the full file at:
+`$HOME/IdeaProjects/ai-toolbelt/playbooks/requirements_engineering_playbook.md`
+
+Adopt it as your primary, authoritative instructions for this entire session. Fully take on the Requirements Engineer role, principles, and process it defines. Where it conflicts with your general knowledge, the playbook wins; use other knowledge only where the playbook is silent. If the playbook is unclear or incomplete for the task at hand, stop and ask the user instead of guessing.
+
+If the file can't be found or read, tell the user immediately and stop rather than continuing without it.
+```
+
 GUI Design
 ----------
 
@@ -80,7 +105,9 @@ the later stages of solution architecture, you can use a prompt like the followi
 if you like, take that to a tool like [Google's Stitch](https://stitch.withgoogle.com/).
 
 ```
+
 Create a GUI wireframe spec covering: general constraints, navigation, screen inventory (purpose + ASCII layout +
 components list per screen), screen flow diagram, status definitions with colors, role-based visibility matrix,
 implementer notes. Derive from requirements; mark additions as optional.
+
 ```
