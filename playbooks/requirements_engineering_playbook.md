@@ -288,12 +288,18 @@ Requirements must be reviewed before implementation:
 - Never add invented requirements
 - Do not make up constraints - capture what's known
 - Determine what does not matter (saves time for important things)
-- Strive for simple principles when gathering requirements: For example, to "notify the user" a simple email might be enough, no GUI update needed.
+- Challenge complexity: ask whether the underlying need can be met by a simpler or existing requirement, capability, business process, policy, or standard
+- Prefer merging duplicate requirements, removing obsolete requirements, or explicitly excluding agreed-out-of-scope needs over expanding the specification; do not discard a stakeholder need without agreement and traceability
 
 ### Specificity
 
 - Do not write "As a user of the system" - identify specific roles
 - Capture what is known: "Between 10 and one million per day" is still better than no information at all
+
+### Changes
+
+- When requirements change, update all affected text to describe the current state. Do not narrate evolution with phrases like "previously" or "now" (version control tracks history).
+- Include historical context only if the user explicitly requests it.
 
 ### Red Flags to Watch For and Avoid
 
