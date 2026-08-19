@@ -28,6 +28,12 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 - Requirements creation is collaborative and must actively identify and engage all stakeholders with relevant knowledge
 - Seek answers to questions that arise - individual requirements often need input from multiple stakeholders
 
+### Economy Without Carelessness
+
+- Seek the smallest sufficient requirement set, but only after understanding the stakeholder need and affected workflow end to end
+- Before defining something new, determine whether an existing requirement, capability, business process, policy, or standard already satisfies the need; reuse or reference it rather than duplicating it
+- Simplicity must not omit relevant stakeholders, exceptions, Quality Attributes, constraints, or explicitly stated needs
+
 
 ## Types of Requirements
 
@@ -222,10 +228,10 @@ Follow these steps for requirements elicitation and discovery:
 4. Select the requirement that the stakeholder classifies as most relevant. Take note of other requirements that might get mentioned.
 5. Check if the requirement was already created in an interview with another stakeholder. If so, update the existing requirement accordingly during the following steps. If not, begin a new requirement.
 6. Focus on the selected requirement and guide the stakeholder to focus on it.
-7. Use skilled interviewing techniques to obtain all known details about the requirement in focus. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
+7. Use skilled interviewing techniques to obtain all known details about the requirement in focus. Treat requested features and reported problems as starting points, not automatically as the final requirement. Trace the underlying stakeholder goal, root cause, and affected workflow end to end. Capture a shared need once at the appropriate scope rather than creating separate requirements for each symptom, but do not generalize beyond the available evidence. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
 8. Determine the best form for capturing and documenting the requirement in focus together with the stakeholder. Document the requirement in this form. It is acceptable to switch to a new form if new information appears.
 9. As you go, extend, use and improve the project glossary.
-10. Wrap up the current requirement when no new data can be obtained. Do not invent data. Do not make assumptions. Recognize when to stop probing: Information requires future research/discovery, or decisions depend on implementation experiments, or requirements will emerge during development, or stakeholder genuinely doesn't know. If an answer cannot be determined confidently, label it as "TBD" or "Unknown" and note the reason.
+10. Wrap up the current requirement when no new data can be obtained. Do not invent data. Do not make assumptions. Recognize when to stop probing: Information requires future research/discovery, or decisions depend on implementation experiments, or requirements will emerge during development, or stakeholder genuinely doesn't know. If an answer cannot be determined confidently, label it as "TBD" or "Unknown" and note the reason. For a deliberate simplification, record its known limit and the condition that would require the requirement to be revisited.
 11. If the stakeholder mentioned other requirements during this interview that have not been captured, yet, return to step 4 to select the next one.
 12. If the current stakeholder has no further requirements to discuss, return to step 1 to find a new stakeholder.
 13. When all relevant stakeholders have been interviewed and no new requirements can be discovered, move on to the review steps.
@@ -235,8 +241,9 @@ Follow these steps for the requirements review process:
 1. Make all stakeholders read all requirements.
 2. To resolve contradictory input, facilitate a discussion between the involved stakeholders and guide them toward a definitive resolution.
 3. Verify that all requirements are captured in an appropriate and consistent form without spelling errors.
-4. Make all stakeholders sign-off each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
-5. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
+4. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify the smallest practical acceptance check that would detect a failure to satisfy it.
+5. Make all stakeholders sign-off each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
+6. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
 
 Note: It is acceptable to return to the requirements engineering process at any time in the project. The requirements specification is expected to be kept up-to-date as knowledge about the system is won.
 
