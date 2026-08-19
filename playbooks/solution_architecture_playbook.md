@@ -31,6 +31,12 @@ Strive for:
 - Collaborative decision-making: engage stakeholders, state tradeoffs, and document alternatives
 - User Experience Drives Architecture: Start with user journeys and work backward to technical design
 
+### Economy Without Carelessness
+
+- Seek the smallest sufficient architecture, but only after understanding the requirements and tracing the real flows end to end
+- Before introducing a new component, service, integration, or layer, determine whether an existing system, component, standard, platform capability, or established pattern already satisfies the need; reuse it rather than duplicating it
+- Simplicity must not omit security, failure semantics, trust boundaries, quality attributes, constraints, or explicitly stated requirements
+
 ### Abstraction
 
 Introduce abstractions to improve architecture quality. Abstraction involves:
@@ -39,6 +45,8 @@ Introduce abstractions to improve architecture quality. Abstraction involves:
 - Specialization: using the abstraction, supplying only what is different for each use case
 
 Where feasible, use abstractions to decompose solutions into independently useful and recomposable components.
+
+Do not introduce speculative abstractions or extra layers for imagined future reuse. Abstract when a current, repeated need justifies it.
 
 ### Clean Architecture Principles
 
@@ -122,6 +130,9 @@ Avoid:
 - Testing oversight: not considering testing and quality assurance from the start
 - Implicit defaults: relying on framework defaults for timeouts, retry counts, or connection limits without documenting them
 - Ambiguous failure semantics: not defining what happens when an operation partially succeeds or produces an ambiguous outcome (e.g., timeout on a non-idempotent call)
+- Speculative architecture: extra services, layers, or patterns for imagined future needs
+- Symptom-driven design: adding a component for a local pain instead of addressing the shared concern once at the right boundary
+- Idealized platform assumptions: designing as if networks, clocks, and infrastructure behave like the spec ideal
 
 
 ## Architecture Process
@@ -134,6 +145,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Study the Product Requirements Document (PRD) in `docs/requirements/prd.md`: internalize all functional requirements, quality attributes, business constraints, and technical constraints
 - Review the project glossary in `docs/requirements/glossary.md`: use the ubiquitous language of the project
+- Trace key user and system flows end to end before selecting patterns or partitioning the system
 - Elicit any missing information required for solution architecture
 - Present open questions to the user grouped by topic, with options where applicable, so the user can make informed decisions
 - Expect iteration: architectural analysis often reveals gaps or ambiguities in requirements; if this happens, ask the user to update them before proceeding
@@ -148,6 +160,10 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Select appropriate architectural patterns and justify the choice
 - Decompose the system into logical, modular components (e.g., services, databases, UIs) using techniques like Domain-Driven Design (DDD) or functional decomposition
+- When evolving an existing system, first inventory components, integrations, and established patterns that can be reused
+- Before adding a component, check whether an existing one or a simpler topology covers the need
+- Address a shared concern once at the right boundary rather than cloning a workaround per component
+- When two equally simple designs exist, prefer the one that is correct for the known edge cases (failures, consistency, trust boundaries)
 - Define each component's responsibility, interfaces, and communication patterns
 - Specify API designs and data contracts
 - Design integration patterns and protocols for external systems
@@ -177,6 +193,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Identify potential issues (technical, operational, security, vendor, etc.)
 - Document mitigations and residual risks
+- For a deliberate simplification, record its known limit and the condition that would require the architecture to be revisited, typically in an ADR
 - Validate the architecture against all functional requirements, quality attributes, and constraints
 - Produce a requirements traceability matrix mapping every requirement to its architectural coverage
 - Test architectural assumptions with stakeholders
@@ -184,7 +201,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 ### Phase 6: Document and Finalize
 
-- Keep the documentation concise and avoid duplication. Use judgement to decide which deliverable artifacts are required.
+- Keep the documentation concise and avoid duplication. Use judgment to decide which deliverable artifacts are required.
 - Produce all required texts and diagrams and place them in a folder called `solution_architecture`.
 - Maintain traceability to PRD requirements and use glossary terms (ubiquitous language).
 - Use Mermaid and diagrams.net (draw.io) format for diagrams.
