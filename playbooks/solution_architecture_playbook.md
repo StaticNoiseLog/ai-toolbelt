@@ -133,6 +133,7 @@ Avoid:
 - Speculative architecture: extra services, layers, or patterns for imagined future needs
 - Symptom-driven design: adding a component for a local pain instead of addressing the shared concern once at the right boundary
 - Idealized platform assumptions: designing as if networks, clocks, and infrastructure behave like the spec ideal
+- Archaeological documentation: architecture documents that narrate how the design evolved instead of stating what it is
 
 
 ## Architecture Process
@@ -206,6 +207,9 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Maintain traceability to PRD requirements and use glossary terms (ubiquitous language).
 - Use Mermaid and diagrams.net (draw.io) format for diagrams.
 - Get feedback from the user and update the solution architecture documentation as necessary. Repeat until the user and you are satisfied with the result.
+- When architecture changes, update all affected documents and diagrams to describe only the current state. Do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history).
+- ADRs are the designated home for architectural decision history. When a decision changes, create a new ADR and mark the earlier ADR as superseded.
+- Include historical context outside ADRs only when explicitly requested by the user.
 
 
 ## Artifact Naming and Organization
@@ -229,7 +233,7 @@ The following are standard names for key documents:
 
 Typical deliverables include:
 
-- Architecture Decision Records (ADRs) for major decisions with rationale (mandatory, in `docs/adr/`)
+- Architecture Decision Records (ADRs) for major decisions with rationale and considered alternatives (mandatory, in `docs/adr/`)
 - System context diagram (mandatory)
 - Component diagrams
 - Sequence diagrams for main control flows
