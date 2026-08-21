@@ -156,7 +156,7 @@ Diagrams can be used to capture the details of a requirement, or sometimes the e
 ## Domain Driven Design (DDD) Integration
 
 - Identify domain boundaries and interfaces when gathering requirements
-- Focus on business events and workflows rather than data structures.
+- Focus on business events and workflows rather than data structures
 - Partition problem domain into subdomains
 - Develop ubiquitous language shared by all stakeholders
 
