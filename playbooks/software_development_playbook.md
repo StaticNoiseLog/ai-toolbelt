@@ -84,6 +84,7 @@ The following rules take precedence over any language-specific conventions:
 - Add code comments at the top of each non-trivial file to explain its purpose
 - Minimize comments by making code self-explanatory; document "why" not "what"
 - When a deliberate simplification has a known limit, document the constraint and the condition that would require a more robust solution
+- Write comments for the current code only; do not describe prior implementations or changes unless historical context is required for understanding (version control tracks history)
 - Implement graceful degradation for non-critical features
 - Write code that is easy to test, modify, extend and debug
 - Design for future changes with extensible structures where the software architecture predicts the need for future changes
