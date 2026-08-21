@@ -38,7 +38,7 @@ The following rules take precedence over any language-specific conventions:
 ### Technology Selection Guidelines
 
 - Do not simply default to the most popular framework or library, but consider leaner, more efficient alternatives that meet the project's needs, such as Micronaut or Quarkus over Spring Boot
-- Aim to keep the number of dependencies minimal to reduce complexity and potential security vulnerabilities
+- Aim to keep the number of dependencies minimal to reduce complexity and potential security vulnerabilities; prefer the standard library, native platform capabilities, and existing project dependencies
 - Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework
 - Prefer semantic HTML and CSS for UI state, interaction, and presentation; reserve JavaScript for data fetching, persistence, complex application logic, and behavior the browser cannot provide natively
 - Default to the latest stable version of programming languages, frameworks, libraries and tools
@@ -63,6 +63,7 @@ The following rules take precedence over any language-specific conventions:
 - Write elegant and expressive code with meaningful and unambiguous names for all identifiers
 - Adhere to SOLID principles: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
 - Respect principles like DRY, KISS, and YAGNI
+- Before writing new code, look for an existing helper, utility, or pattern in the codebase and reuse or extend it instead of writing a parallel implementation
 - Employ Dependency Injection (DI) or Inversion of Control (IoC) to manage dependencies where the framework or language supports it
 - Carefully choose between synchronous (request/response) and asynchronous (event-based) communication, as well as blocking or non-blocking style, based on use case requirements for coupling, responsiveness, consistency guarantees, and error handling
 - Use REST, gRPC, or GraphQL as appropriate and explain the rationale for the choice
@@ -79,11 +80,14 @@ The following rules take precedence over any language-specific conventions:
 - Implement architectural patterns (e.g., Microservices, CQRS, Event Sourcing, Hexagonal Architecture) as dictated by the SAD
 - Avoid overuse of shared state or globals
 - When two coding solutions are equally valid and clear, prefer the one whose code is shorter (shorter is better)
+- Remove dead code, unused abstractions, and unnecessary boilerplate unless they support planned or active work
 - Add code comments at the top of each non-trivial file to explain its purpose
 - Minimize comments by making code self-explanatory; document "why" not "what"
+- When a deliberate simplification has a known limit, document the constraint and the condition that would require a more robust solution
 - Implement graceful degradation for non-critical features
 - Write code that is easy to test, modify, extend and debug
 - Design for future changes with extensible structures where the software architecture predicts the need for future changes
+- Avoid speculative generality: do not add abstractions, extension points, or configuration options unless required by a requirement or the SAD
 - Avoid god objects and classes with too many responsibilities
 - Prevent shotgun surgery through grouping related behavior or data under proper abstractions
 - Avoid primitive obsession by creating domain-specific types
@@ -134,6 +138,8 @@ The following rules take precedence over any language-specific conventions:
 - Log meaningful information at appropriate levels
 - Design proper exception hierarchies and error classifications, differentiating between recoverable and non-recoverable errors
 - Implement consistent error handling and use modern language features like Java AutoCloseable to manage and contain exceptions
+- Ensure error handling prevents data loss at persistence and other irreversible boundaries
+- Do not assume hardware, clocks, sensors, or networks behave ideally; account for drift, noise, calibration, latency, and failure where the system depends on them
 - Implement retry mechanisms that ensure idempotency, handling transient errors gracefully while preventing disruptive or duplicative repeated executions, and log retries
 - Establish a centralized error mapping system to convert application errors into meaningful messages or codes, avoiding ad hoc mapping, and document these error codes
 - Design centralized logging, monitoring and alerting as required to fulfill the requirements in the PRD and SAD
@@ -301,6 +307,7 @@ Follow all principles, processes, guidelines, and standards outlined in this pla
 - Review the code against the coding standards and conventions outlined in this playbook
 - Ask yourself: "Would a senior engineer be satisfied with this - or is it overly complicated, too simple, or incomplete?" If not, revise accordingly
 - When debugging or reviewing code, read it line by line rather than relying solely on function or class names to infer behavior
+- For bug fixes, identify the root cause, trace affected callers and flows, and correct the shared source of the defect rather than patching individual symptoms
 - Keep all documentation up-to-date as the code evolves, in particular all documents in `docs/` and its subdirectories and `README.md`
 - Optimize code for performance, readability, and maintainability without deviating from the architecture
 - Perform linting and static code analysis and ensure the code passes all checks without warnings or errors
