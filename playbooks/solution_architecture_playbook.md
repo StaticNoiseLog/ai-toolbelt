@@ -202,17 +202,17 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 ### Phase 6: Document and Finalize
 
-- Keep the documentation concise and avoid duplication. Use judgment to decide which deliverable artifacts are required.
+- Keep the documentation concise and avoid duplication; use judgment to decide which deliverable artifacts are required
 - Update the project glossary in `docs/requirements/glossary.md` when needed
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
 - Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
-- Produce all required texts and diagrams and place them in a folder called `solution_architecture`.
-- Maintain traceability to PRD requirements and use glossary terms (ubiquitous language).
-- Use Mermaid and diagrams.net (draw.io) format for diagrams.
-- Get feedback from the user and update the solution architecture documentation as necessary. Repeat until the user and you are satisfied with the result.
-- When architecture changes, update all affected documents and diagrams to describe only the current state. Do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history).
-- ADRs are the designated home for architectural decision history. When a decision changes, create a new ADR and mark the earlier ADR as superseded.
-- Include historical context outside ADRs only when explicitly requested by the user.
+- Produce all required texts and diagrams and place them in a folder called `solution_architecture`
+- Maintain traceability to PRD requirements and use glossary terms (ubiquitous language)
+- Use Mermaid and diagrams.net (draw.io) format for diagrams
+- Get feedback from the user and update the solution architecture documentation as necessary; repeat until the user and you are satisfied with the result
+- When architecture changes, update all affected documents and diagrams to describe only the current state; do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history)
+- ADRs are the designated home for architectural decision history; when a decision changes, create a new ADR and mark the earlier ADR as superseded
+- Include historical context outside ADRs only when explicitly requested by the user
 
 
 ## Artifact Naming and Organization
