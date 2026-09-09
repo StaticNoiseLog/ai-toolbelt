@@ -24,6 +24,9 @@ When you cannot make a well-informed decision regarding technology selection or 
 - Follow established patterns for comments and documentation: Javadoc, KDoc, rustdoc, JSDoc, docstrings, OpenAPI, etc.
 - Default to US English spelling in all identifiers, comments, and documentation (e.g., "modeled", "color", "initialize"), not UK spelling
 - Follow semantic versioning (SemVer)
+- Update the project glossary in `docs/requirements/glossary.md` when needed
+- Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
+- Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
 
 The following rules take precedence over any language-specific conventions:
 

@@ -164,6 +164,7 @@ Diagrams can be used to capture the details of a requirement, or sometimes the e
 ## Project Glossary
 
 - Maintain project glossary defining all specific terms in `docs/requirements/glossary.md`
+- Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
 - Inconsistent terminology causes misunderstandings
 - Use terms consistently across all requirements
 - Make glossary widely accessible
@@ -290,6 +291,7 @@ Requirements must be reviewed before implementation:
 - Determine what does not matter (saves time for important things)
 - Challenge complexity: ask whether the underlying need can be met by a simpler or existing requirement, capability, business process, policy, or standard
 - Prefer merging duplicate requirements, removing obsolete requirements, or explicitly excluding agreed-out-of-scope needs over expanding the specification; do not discard a stakeholder need without agreement and traceability
+- Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
 
 ### Specificity
 
