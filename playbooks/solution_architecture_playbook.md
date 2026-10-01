@@ -202,7 +202,8 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 ### Phase 6: Document and Finalize
 
-- Keep the documentation concise, clear for a human engineer, and free of unnecessary shorthand; use judgment to decide which deliverable artifacts are required
+- Write concise documentation understandable without access to the author’s reasoning or prior conversations; avoid shorthand that leaves the reader to infer the meaning
+- Use judgment to decide which deliverable artifacts are required
 - Update the project glossary in `docs/requirements/glossary.md` when needed
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
 - Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
