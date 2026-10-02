@@ -66,48 +66,21 @@ Follow these principles:
 
 ### Use Known Architectural Patterns
 
-Use established patterns when they fit the solution and name them explicitly. Examples:
+Use established patterns when they fit the solution and name them explicitly. These lists are neither exhaustive nor mandatory; use only patterns that fit.
 
-- Adapter
-- Aggregator
-- Blackboard
-- Broker
-- CQRS (Command Query Responsibility Segregation)
-- Canonical Data Model
-- Client-Server
-- Command
-- Component-Based Architecture
-- Dependency Injection
-- Domain Model
-- Event-Driven Architecture (EDA)
-- Event-Bus
-- Factory Method
-- Façade
-- Hexagonal Architecture
-- Interpreter
-- Layers (Layered Architecture)
-- LMAX Architecture (Disruptor Pattern)
-- Loosely Coupled Architecture
-- Master-Slave
-- Mediator
-- Micro-frontends
-- Microkernel (Plugin Architecture)
-- Microservices
-- Model-View-Controller (MVC)
-- Model-View-ViewModel (MVVM)
-- Modular Monolith
-- Peer-to-Peer
-- Pipes and Filters
-- Presentation-Abstraction-Control (PAC)
-- Publish-Subscribe
-- RESTful Architecture
-- SAM (State-Action-Model): Helps manage the application state and reason about temporal aspects with precision and clarity. Modern Software Engineering practices are essentially based on Functions (Actions) and Types which encourage a sprawl of unstructured assignments and event handlers. SAM's founding principle is that State Mutations must be first class citizens of the programming model. Once that principle is accepted, proper temporal semantics can be articulated. See https://sam.js.org/.
-- Saga Pattern
-- Service Layer
-- Service-Oriented Architecture (SOA)
-- Singleton
-- Space-Based Architecture (SBA)
-- Strangler Fig
+- Architectural styles: Blackboard, Client-Server, Component-Based Architecture, Event-Driven Architecture (EDA), Hexagonal Architecture, Layers, LMAX Architecture (Disruptor), Microkernel (Plugin Architecture), Microservices, Modular Monolith, Peer-to-Peer, Pipes and Filters, RESTful Architecture, Service-Oriented Architecture (SOA), Space-Based Architecture (SBA)
+- Integration and migration: Aggregator, Broker, Canonical Data Model, Event Bus, Publish-Subscribe, Strangler Fig
+- Data, consistency, and coordination: CQRS, Domain Model, Leader-Follower, Saga
+- Presentation: Micro-frontends, MVC, MVVM, PAC, SAM
+- Component design: Adapter, Command, Dependency Injection, Façade, Factory Method, Interpreter, Mediator, Service Layer
+
+### Presentation
+
+Choose the client technology from the requirements; do not default to web technology (e.g., consider native or cross-platform toolkits such as Compose Multiplatform).
+
+For web clients, escalate only as far as the requirements force you, because fewer dependencies mean a smaller attack surface and less maintenance: standard HTML, CSS, and JavaScript (e.g., Web Components) first; then a lightweight library such as Lit, Preact, htmx, or Alpine; a full framework such as React only when the PRD specifies it or requirements justify it. Record the rationale in an ADR.
+
+For rule-heavy client state or complex workflow/temporal constraints on any client, consider SAM (State-Action-Model, https://sam.js.org/, grounded in TLA+). Actions translate events into proposals; the model alone decides to accept, reject, or partially reject them; the state function then invokes any automatic next action (next-action predicate) and computes the state representation that the view renders. The view is a pure function of that representation, with no two-way binding. This gives precise temporal semantics instead of scattered assignments and event handlers, and needs no framework.
 
 ### Standards
 
