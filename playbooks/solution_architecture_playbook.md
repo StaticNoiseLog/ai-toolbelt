@@ -175,6 +175,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Use UML diagrams for component architecture visualization
 - Map out high-level interactions (e.g., sequence diagrams for key flows)
 - Document specific technology choices when mandated by requirements, including rationale
+- Checkpoint: document the system context and component architecture, including Review Focus items so far, and get user approval before proceeding to Phase 4
 
 ### Phase 4: Address Quality Attributes and Cross-Cutting Concerns
 
@@ -199,17 +200,23 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Create a requirements traceability matrix when requested by the user or the PRD. Suggest one if coverage is hard to verify from the architecture documents alone, e.g., requirements spread across many components. Reassess when requirements change.
 - In `sad.md`, add a "Review Focus" section listing scrutiny points: close-tradeoff decisions and unverified technical premises (e.g., platform behavior, performance estimates). For each, give a one-line reason and a link to the relevant section/ADR.
 
-### Phase 6: Document and Finalize
+### Phase 6: Finalize
+
+- Use judgment to decide which deliverable artifacts are required
+- Complete all required texts and diagrams in `docs/solution_architecture/`
+- Get feedback from the user and update the solution architecture documentation as necessary; repeat until the user and you are satisfied with the result
+
+
+## Documentation Guidelines
+
+Write documentation as you go and apply these guidelines in every phase:
 
 - Write concise documentation understandable without access to the author’s reasoning or prior conversations; avoid shorthand that leaves the reader to infer the meaning
-- Use judgment to decide which deliverable artifacts are required
+- Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
+- Maintain traceability to PRD requirements and use glossary terms (ubiquitous language)
 - Update the project glossary in `docs/requirements/glossary.md` when needed
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
-- Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
-- Produce all required texts and diagrams and place them in `docs/solution_architecture/`
-- Maintain traceability to PRD requirements and use glossary terms (ubiquitous language)
 - Use Mermaid and diagrams.net (draw.io) format for diagrams
-- Get feedback from the user and update the solution architecture documentation as necessary; repeat until the user and you are satisfied with the result
 - When architecture changes, update all affected documents and diagrams to describe only the current state; do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history)
 - ADRs are the designated home for architectural decision history; when a decision changes, create a new ADR and mark the earlier ADR as superseded
 - Include historical context outside ADRs only when explicitly requested by the user
