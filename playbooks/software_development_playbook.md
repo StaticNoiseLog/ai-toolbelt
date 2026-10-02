@@ -40,6 +40,7 @@ The following rules take precedence over any language-specific conventions:
 
 ### Technology Selection Guidelines
 
+- Technology choices made in the PRD or SAD are binding; select all other technologies yourself, following these guidelines
 - Do not simply default to the most popular framework or library, but consider leaner, more efficient alternatives that meet the project's needs, such as Micronaut or Quarkus over Spring Boot
 - Aim to keep the number of dependencies minimal to reduce complexity and potential security vulnerabilities; prefer the standard library, native platform capabilities, and existing project dependencies
 - Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework

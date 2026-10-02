@@ -9,7 +9,7 @@ Do not guess missing facts, even minor ones; ask the user before continuing. But
 
 Solution architecture defines what a system will be and how its components and technologies will work together to satisfy business requirements, constraints, and quality attributes.
 
-While the PRD may specify technical constraints like a specific programming language, solution architecture usually does not make technology choices. For example, the decision to use React is not an architectural decision; the decision to use a web-based client is. The choice of technology should not drive the architecture.
+Respect technology choices mandated by the PRD; push back only if one clearly conflicts with other requirements, and explain why. Choose technologies yourself only when they shape the system's structure or are costly to reverse (e.g., client platform, structure-defining frameworks such as Angular or Spring Boot, communication protocols, database category). Leave choices within a component (e.g., JPA vs. JDBC) to the software developer. Architecture drives technology choices, not the reverse.
 
 ### Architectural Design Principles
 
@@ -74,13 +74,13 @@ Use established patterns when they fit the solution and name them explicitly. Th
 - Presentation: Micro-frontends, MVC, MVVM, PAC, SAM
 - Component design: Adapter, Command, Dependency Injection, Façade, Factory Method, Interpreter, Mediator, Service Layer
 
-### Presentation
+### User Interface
 
-Choose the client technology from the requirements; do not default to web technology (e.g., consider native or cross-platform toolkits such as Compose Multiplatform).
+Choose UI technology based on requirements; do not default to web technology (e.g., consider native or cross-platform toolkits such as Compose Multiplatform).
 
-For web clients, escalate only as far as the requirements force you, because fewer dependencies mean a smaller attack surface and less maintenance: standard HTML, CSS, and JavaScript (e.g., Web Components) first; then a lightweight library such as Lit, Preact, htmx, or Alpine; a full framework such as React only when the PRD specifies it or requirements justify it. Record the rationale in an ADR.
+For web clients, escalate only as far as the requirements force you, because fewer dependencies mean a smaller attack surface and less maintenance: standard HTML, CSS, and JavaScript (e.g., Web Components) first; then a lightweight library such as Lit, Preact, htmx, or Alpine; a full framework such as React only when the PRD specifies it or requirements justify it.
 
-For rule-heavy client state or complex workflow/temporal constraints on any client, consider SAM (State-Action-Model, https://sam.js.org/, grounded in TLA+). Actions translate events into proposals; the model alone decides to accept, reject, or partially reject them; the state function then invokes any automatic next action (next-action predicate) and computes the state representation that the view renders. The view is a pure function of that representation, with no two-way binding. This gives precise temporal semantics instead of scattered assignments and event handlers, and needs no framework.
+For rule-heavy UI state or complex workflow/temporal constraints in any UI, consider SAM (State-Action-Model, https://sam.js.org/, grounded in TLA+). Actions translate events into proposals; the model alone decides to accept, reject, or partially reject them; the state function then invokes any automatic next action (next-action predicate) and computes the state representation that the view renders. The view is a pure function of that representation, with no two-way binding. This gives precise temporal semantics instead of scattered assignments and event handlers, and needs no framework.
 
 ### Standards
 
@@ -147,7 +147,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Address multi-instance coordination explicitly: work distribution, locking, idempotency, and stale-state recovery
 - Use UML diagrams for component architecture visualization
 - Map out high-level interactions (e.g., sequence diagrams for key flows)
-- Document specific technology choices when mandated by requirements, including rationale
+- Document all technology choices, mandated or your own, with rationale in ADRs
 - Checkpoint: document the system context and component architecture, including Review Focus items so far, and stop for review approval before proceeding to Phase 4
 
 ### Phase 4: Address Quality Attributes and Cross-Cutting Concerns
