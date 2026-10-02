@@ -175,7 +175,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Use UML diagrams for component architecture visualization
 - Map out high-level interactions (e.g., sequence diagrams for key flows)
 - Document specific technology choices when mandated by requirements, including rationale
-- Checkpoint: document the system context and component architecture, including Review Focus items so far, and get user approval before proceeding to Phase 4
+- Checkpoint: document the system context and component architecture, including Review Focus items so far, and stop for review approval before proceeding to Phase 4
 
 ### Phase 4: Address Quality Attributes and Cross-Cutting Concerns
 
