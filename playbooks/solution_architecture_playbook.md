@@ -145,7 +145,6 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Plan data architecture and storage strategies, addressing data consistency and transaction requirements
 - Define state machines for entities with complex lifecycles; document all valid transitions, guards, and side effects
 - Address multi-instance coordination explicitly: work distribution, locking, idempotency, and stale-state recovery
-- Use UML diagrams for component architecture visualization
 - Map out high-level interactions (e.g., sequence diagrams for key flows)
 - Document all technology choices, mandated or your own, with rationale in ADRs
 - Checkpoint: document the system context and component architecture, including Review Focus items so far, and stop for review approval before proceeding to Phase 4
@@ -189,7 +188,7 @@ Write documentation as you go and apply these guidelines in every phase:
 - Maintain traceability to PRD requirements and use glossary terms (ubiquitous language)
 - Update the project glossary in `docs/requirements/glossary.md` when needed
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
-- Use Mermaid and diagrams.net (draw.io) format for diagrams
+- Use Mermaid embedded in Markdown for diagrams; use draw.io only when a diagram is too complex for Mermaid, and link it from the Markdown. Follow UML conventions (e.g., sequence, state, component diagrams), and organize structural diagrams by C4 levels (context, containers, components), one level per diagram.
 - When architecture changes, update all affected documents and diagrams to describe only the current state; do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history)
 - ADRs are the designated home for architectural decision history; when a decision changes, create a new ADR and mark the earlier ADR as superseded
 - Include historical context outside ADRs only when explicitly requested by the user
