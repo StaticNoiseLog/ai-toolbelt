@@ -72,7 +72,7 @@ Use established patterns when they fit the solution and name them explicitly. Th
 
 Choose UI technology based on requirements; do not default to web technology (e.g., consider native or cross-platform toolkits such as Compose Multiplatform).
 
-For web clients, retain established technology unless requirements justify a change. When selecting technology, prefer standard HTML, CSS, and JavaScript (e.g., Web Components), then lightweight libraries such as Lit, Preact, htmx, or Alpine; use a full framework such as React when mandated or justified by requirements.
+For web clients, retain established technology unless requirements justify a change. When selecting technology, prefer standard HTML, CSS, and JavaScript (e.g., Web Components), then lightweight libraries such as Lit, Preact, htmx, or Alpine; use a full framework such as React only when mandated or justified by requirements.
 
 For rule-heavy UI state or complex workflow/temporal constraints in any UI, consider SAM (State-Action-Model, https://sam.js.org/). Actions propose changes; the model accepts, rejects, or partially rejects them; the state function determines automatic next actions and computes the state representation. The view is a pure function of that representation, with no two-way binding.
 
