@@ -107,7 +107,7 @@ Avoid:
 
 Architecture is the partitioning of a whole into parts, with specific relations among the parts. Follow these phases to develop the solution architecture.
 
-Quality attributes guide decisions throughout the architecture process.
+Quality attributes guide decisions throughout the architecture process; for each one in the PRD, state which architectural decisions address it.
 
 Important: These phases provide structure, but architecture is not strictly sequential. Insights from later phases often feed back into earlier ones. For example, component design (Phase 3) may reveal missing requirements (Phase 1), or risk assessment (Phase 5) may require changes to the component architecture (Phase 3). Embrace this iteration — it produces better architectures than a rigid waterfall through the phases.
 
