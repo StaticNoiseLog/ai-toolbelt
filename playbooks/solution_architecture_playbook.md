@@ -169,7 +169,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Use judgment to decide which deliverable artifacts are required
 - Complete all required texts and diagrams in `docs/solution_architecture/`
-- Get feedback from the user and update the solution architecture documentation as necessary; repeat until the user and you are satisfied with the result
+- Stop for review; incorporate feedback and repeat until the architecture is approved
 
 
 ## Documentation Guidelines
