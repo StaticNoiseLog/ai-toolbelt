@@ -153,6 +153,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Design deployment topology (on-prem, cloud, hybrid) and infrastructure requirements
 - Plan configuration management and environment strategies (dev, test, prod)
 - Address maintenance and support requirements
+- Design for testability: define test seams (e.g., replaceable adapters for external systems, injectable clocks), test environments, and how quality attributes will be verified
 - Define a timezone policy: specify what timezone is used at each layer (database, API, internal code, presentation) and how conversions are handled
 
 ### Phase 5: Assess Risks and Validate
