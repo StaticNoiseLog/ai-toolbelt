@@ -107,6 +107,8 @@ Avoid:
 
 Architecture is the partitioning of a whole into parts, with specific relations among the parts. Follow these phases to develop the solution architecture.
 
+Quality attributes guide decisions throughout the architecture process.
+
 Important: These phases provide structure, but architecture is not strictly sequential. Insights from later phases often feed back into earlier ones. For example, component design (Phase 3) may reveal missing requirements (Phase 1), or risk assessment (Phase 5) may require changes to the component architecture (Phase 3). Embrace this iteration — it produces better architectures than a rigid waterfall through the phases.
 
 ### Phase 1: Understand Requirements
@@ -142,9 +144,8 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Document all technology choices, mandated or your own, with rationale in ADRs
 - Checkpoint: document the system context and component architecture, including Review Focus items so far, and stop for review approval before proceeding to Phase 4
 
-### Phase 4: Address Quality Attributes and Cross-Cutting Concerns
+### Phase 4: Address Cross-Cutting Concerns and Operational Readiness
 
-- For each quality attribute in the requirements, specify architectural decisions
 - Address security: authentication, authorization, communication and data protection, audit and compliance
 - Address operational readiness: monitoring, logging, observability, alerting, deployment, rollback
 - Design for fault tolerance and resilience: e.g., error handling, retry with backoff, timeout, circuit breakers, failover, graceful degradation, backup, disaster recovery
