@@ -293,7 +293,7 @@ Follow all principles, processes, guidelines, and standards outlined in this pla
 - Map each task to the corresponding architectural component (e.g., APIs, UI modules, database schemas)
 - Identify task dependencies and critical path items
 - Define acceptance criteria and identify testing requirements for each task
-- Request that the user assign each task a priority based on business value, dependencies, or critical path (e.g., prioritizing core functionality or MVP first)
+- Request that the user assign each task a priority based on business value, dependencies, or critical path (e.g., prioritizing core functionality or MVP first), taking into account the implementation roadmap in the solution architecture, if present
 - For estimation purposes, assign each task a relative complexity value using a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100; have the user review and adjust these estimates
 - Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, with priority, complexity, and dependencies
 
