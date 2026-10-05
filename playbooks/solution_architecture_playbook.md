@@ -209,6 +209,7 @@ Typical deliverables include:
 
 - Architecture Decision Records (ADRs) for major decisions with rationale and considered alternatives (mandatory, in `docs/adr/`)
 - System context diagram (mandatory)
+- Container diagram
 - Component diagrams
 - Sequence diagrams for main control flows
 - Deployment diagrams
