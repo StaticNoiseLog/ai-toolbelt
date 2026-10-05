@@ -31,6 +31,14 @@ When principles conflict, prioritize in this order: explicit requirements and co
 - Before introducing a new component, service, integration, or layer, determine whether an existing system, component, standard, platform capability, or established pattern already satisfies the need; reuse it rather than duplicating it
 - Simplicity must not omit security, failure semantics, trust boundaries, quality attributes, constraints, or explicitly stated requirements
 
+### Proportionate Failure Handling
+
+- Assess failure scenarios by likely frequency and impact; do not invent probabilities
+- For rare failures, default to explicit error reporting and manual recovery rather than complex automation, provided this preserves safety, security, and data integrity and meets requirements
+- Justify automated recovery by expected frequency, impact, or explicit requirements
+- When the appropriate response is unclear, ask the user before designing automated recovery
+- An explicitly reported failure is correct behavior; a silent wrong result is not
+
 ### Abstraction
 
 Introduce abstractions to improve architecture quality. Abstraction involves:
@@ -98,6 +106,7 @@ Avoid:
 - Implicit defaults: relying on framework defaults for timeouts, retry counts, or connection limits without documenting them
 - Ambiguous failure semantics: not defining what happens when an operation partially succeeds or produces an ambiguous outcome (e.g., timeout on a non-idempotent call)
 - Speculative architecture: extra services, layers, or patterns for imagined future needs
+- Over-engineered recovery: automating recovery for rare cases where detection, a clear error, and manual intervention suffice
 - Symptom-driven design: adding a component for a local pain instead of addressing the shared concern once at the right boundary
 - Idealized platform assumptions: designing as if networks, clocks, and infrastructure behave like the spec ideal
 - Archaeological documentation: architecture documents that narrate how the design evolved instead of stating what it is
@@ -148,7 +157,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Address security: authentication, authorization, communication and data protection, audit and compliance
 - Address operational readiness: monitoring, logging, observability, alerting, deployment, rollback
-- Design for fault tolerance and resilience: e.g., error handling, retry with backoff, timeout, circuit breakers, failover, graceful degradation, backup, disaster recovery
+- Design for fault tolerance and resilience: e.g., error handling, retry with backoff, timeout, circuit breakers, failover, graceful degradation, backup, disaster recovery; proportionate to likelihood and impact
 - Design for the load and growth the requirements indicate: load distribution, elasticity, bottleneck mitigation, scaling strategy, and caching as required
 - Design deployment topology (on-prem, cloud, hybrid) and infrastructure requirements
 - Plan configuration management and environment strategies (dev, test, prod)
@@ -163,7 +172,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - For a deliberate simplification, record its known limit and the condition that would require the architecture to be revisited, typically in an ADR
 - Validate the architecture against all functional requirements, quality attributes, and constraints
 - Create a requirements traceability matrix when requested by the user or the PRD. Suggest one if coverage is hard to verify from the architecture documents alone, e.g., requirements spread across many components. Reassess when requirements change.
-- In `sad.md`, add a "Review Focus" section directing reviewers to close-tradeoff decisions and unverified technical premises (e.g., platform behavior, performance estimates). For each, give a one-line reason for scrutiny and a link to the relevant section/ADR.
+- In `sad.md`, add a "Review Focus" section directing reviewers to close-tradeoff decisions and unverified technical premises (e.g., platform behavior, performance estimates, edge-case likelihood). For each, give a one-line reason for scrutiny and a link to the relevant section/ADR.
 
 ### Phase 6: Finalize
 
