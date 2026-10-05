@@ -65,7 +65,7 @@ Use established patterns when they fit the solution and name them explicitly. Th
 - Architectural styles: Blackboard, Client-Server, Component-Based Architecture, Event-Driven Architecture (EDA), Hexagonal Architecture, Layers, LMAX Architecture (Disruptor), Microkernel (Plugin Architecture), Microservices, Modular Monolith, Peer-to-Peer, Pipes and Filters, RESTful Architecture, Service-Oriented Architecture (SOA), Space-Based Architecture (SBA)
 - Integration and migration: Aggregator, Broker, Canonical Data Model, Event Bus, Publish-Subscribe, Strangler Fig
 - Data, consistency, and coordination: CQRS, Domain Model, Leader-Follower, Saga
-- Presentation: Micro-frontends, MVC, MVVM, PAC, SAM
+- User interface: Micro-frontends, MVC, MVVM, PAC, SAM
 - Component design: Adapter, Command, Dependency Injection, Façade, Factory Method, Interpreter, Mediator, Service Layer
 
 ### User Interface
