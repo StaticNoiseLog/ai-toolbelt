@@ -163,13 +163,13 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - For a deliberate simplification, record its known limit and the condition that would require the architecture to be revisited, typically in an ADR
 - Validate the architecture against all functional requirements, quality attributes, and constraints
 - Create a requirements traceability matrix when requested by the user or the PRD. Suggest one if coverage is hard to verify from the architecture documents alone, e.g., requirements spread across many components. Reassess when requirements change.
-- In `sad.md`, add a "Review Focus" section listing scrutiny points: close-tradeoff decisions and unverified technical premises (e.g., platform behavior, performance estimates). For each, give a one-line reason and a link to the relevant section/ADR.
+- In `sad.md`, add a "Review Focus" section directing reviewers to close-tradeoff decisions and unverified technical premises (e.g., platform behavior, performance estimates). For each, give a one-line reason for scrutiny and a link to the relevant section/ADR.
 
 ### Phase 6: Finalize
 
 - Use judgment to decide which deliverable artifacts are required
 - Complete all required texts and diagrams in `docs/solution_architecture/`
-- Stop for review; incorporate feedback and repeat until the architecture is approved
+- Stop for review; incorporate feedback and repeat until the reviewer approves the architecture
 
 
 ## Documentation Guidelines
