@@ -169,7 +169,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Use judgment to decide which deliverable artifacts are required
 - Complete all required texts and diagrams in `docs/solution_architecture/`
-- Stop for review; incorporate feedback and repeat until the reviewer approves the architecture
+- Stop for review; incorporate feedback and repeat until the architecture passes all reviews
 
 
 ## Documentation Guidelines
