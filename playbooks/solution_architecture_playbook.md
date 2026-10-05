@@ -122,7 +122,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 
 - Identify all system boundaries, users, and external systems
 - Create a system context diagram: show your system as a single box and illustrate relationships with all external actors and systems
-- Identify all integration points and data flows: list every point where your system connects with an external service, API, or data source, specifying purpose and likely data format
+- Identify all integration points and data flows: list every point where your system connects with an external service, API, or data source, specifying purpose and data format
 
 ### Phase 3: Design Component Architecture
 
