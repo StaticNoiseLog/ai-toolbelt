@@ -149,9 +149,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 - Address security: authentication, authorization, communication and data protection, audit and compliance
 - Address operational readiness: monitoring, logging, observability, alerting, deployment, rollback
 - Design for fault tolerance and resilience: e.g., error handling, retry with backoff, timeout, circuit breakers, failover, graceful degradation, backup, disaster recovery
-- Design for expected load and growth: load distribution, elasticity, bottleneck mitigation
-- Plan horizontal and vertical scaling strategies
-- Design caching and optimization approaches
+- Design for the load and growth the requirements indicate: load distribution, elasticity, bottleneck mitigation, scaling strategy, and caching as required
 - Design deployment topology (on-prem, cloud, hybrid) and infrastructure requirements
 - Plan configuration management and environment strategies (dev, test, prod)
 - Address maintenance and support requirements
