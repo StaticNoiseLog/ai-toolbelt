@@ -215,7 +215,7 @@ Typical deliverables include:
 - Sequence diagrams for main control flows
 - Deployment diagrams
 - Interface specifications
-- Configuration inventory: a complete list of all environment variables and configuration parameters with descriptions and defaults
+- Architecturally significant configuration parameters (e.g., timeouts, retry limits, capacity limits) with defaults and rationale; the software developer maintains the complete configuration documentation
 - UX artifacts (user flows, wireframes) when applicable
 - Risk register
 - Requirements traceability matrix (optional)

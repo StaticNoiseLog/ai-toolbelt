@@ -137,7 +137,7 @@ The following rules take precedence over any language-specific conventions:
 - Implement configuration-specific versioning and rollback capabilities
 - Facilitate monitoring and alerting on config changes, with drift detection and remediation to avoid configuration drift between environments
 - Allow dynamic reloading of configuration settings where applicable
-- Document all configuration settings and their purposes, preferably directly in the configuration store, otherwise in `docs/development/configuration.md`
+- Document all configuration settings and their purposes, preferably directly in the configuration store, otherwise in `docs/development/configuration.md`; for parameters defined in the SAD, reference the SAD instead of repeating their values and rationale
 - Logging (unless specified in PRD/SAD): default to the RFC 5424 syslog message format; avoid structured formats like JSON unless explicitly requested
 - Use techniques like lazy and deferred logging to minimize performance impact
 - Log meaningful information at appropriate levels
