@@ -86,7 +86,8 @@ Every requirement MUST have:
 
 - ID: Unique identifier for referencing
 - Title: Short phrase expressing goal/value
-- Value: Clear benefit to system/stakeholder
+- Value: Clear benefit to system/stakeholder. Where useful, combine a descriptive statement of the required behavior or outcome with the value it provides.
+- Priority: MoSCoW classification or "TBD"
 - Quality Attributes & Constraints: Check ALL applicable items from the checklists
 - Stakeholders: Identify all stakeholders that contributed to this requirement.
 - Traceability References: Where possible, link to related business objectives, architectural components, or test cases.
