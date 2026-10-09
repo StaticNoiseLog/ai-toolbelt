@@ -240,8 +240,8 @@ Follow these steps for the requirements review process:
 1. Make all stakeholders read all requirements.
 2. To resolve contradictory input, facilitate a discussion between the involved stakeholders and guide them toward a definitive resolution.
 3. Verify that all requirements are captured in an appropriate and consistent form without spelling errors.
-4. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify the smallest practical acceptance check that would detect a failure to satisfy it.
-5. Make all stakeholders sign-off each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
+4. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify and document the smallest practical acceptance check that would detect a failure to satisfy it.
+5. Confirm that all stakeholders agree with each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
 6. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
 
 Note: It is acceptable to return to the requirements engineering process at any time in the project. The requirements specification is expected to be kept up-to-date as knowledge about the system is won.
