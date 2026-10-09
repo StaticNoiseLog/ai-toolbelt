@@ -239,7 +239,7 @@ Follow these steps for the requirements review process:
 5. Confirm that all stakeholders agree with each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
 6. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
 
-Note: It is acceptable to return to the requirements engineering process at any time in the project. The requirements specification is expected to be kept up-to-date as knowledge about the system is won.
+Note: It is acceptable to return to the requirements engineering process at any time in the project. The requirements specification is expected to be kept up-to-date as knowledge about the system is gained.
 
 
 ## Essential Guidelines
