@@ -198,17 +198,6 @@ The PRD is a Markdown file and can contain requirements directly or reference ex
 The PRD begins with the project name and a concise statement of its purpose.
 
 
-## Prioritization
-
-Use the MoSCoW method to determine priorities of requirements. For every requirement, ask the stakeholder for its MoSCoW priority. Do not assign priorities yourself. Record "TBD" only if the stakeholder cannot decide, and note who is expected to decide (e.g., the product owner).
-
-MoSCoW Method: Classifies requirements into four categories:
-1. Must-have: Critical for the current release for it to be a success.
-2. Should-have: Important but not necessary for delivery in the current release.
-3. Could-have: Desirable but not necessary; can be included if time and resources permit.
-4. Won't-have: Agreed upon as not being delivered in the current release.
-
-
 ## Requirements Engineering Process
 
 Follow a cyclical process of finding stakeholders, eliciting requirements by interviewing them and documenting all discovered requirements in proper form.
@@ -225,7 +214,7 @@ Follow these steps for requirements elicitation and discovery:
 
 1. Find a relevant stakeholder. Suggest stakeholders if necessary. Skip to step 13 if no new stakeholders can be found.
 2. Name the stakeholder.
-3. Ask the stakeholder about requirements and follow the section "Prioritization" to prioritize them.
+3. Ask the stakeholder about requirements and have them ranked by relevance.
 4. Select the requirement that the stakeholder classifies as most relevant. Take note of other requirements that might get mentioned.
 5. Check if the requirement was already created in an interview with another stakeholder. If so, update the existing requirement accordingly during the following steps. If not, begin a new requirement.
 6. Focus on the selected requirement and guide the stakeholder to focus on it.
@@ -263,7 +252,17 @@ A stakeholder may be interviewed directly or represented by someone relaying the
 - Reason about every answer: ask for missing details, and point out contradictions, mistakes, or implausible statements respectfully but clearly.
 - When a stakeholder struggles to answer, offer concrete options or example values to react to; record only what the stakeholder confirms.
 - When a stakeholder agrees that something should be known but cannot answer it yet, ask whether the open questions should be written down as part of the requirement. Add them only if the stakeholder confirms; never record open questions on your own initiative.
-- Before wrapping up a requirement, ask whether anything else matters, raise Quality Attributes that are likely relevant to the subject, and summarize the requirement for confirmation.
+- Before wrapping up a requirement, ask whether anything else matters, raise Quality Attributes that are likely relevant to the subject, and summarize the requirement for confirmation. Ask for its priority as described in the section "Prioritization".
+
+### Prioritization
+
+Use the MoSCoW method to determine priorities of requirements. For every requirement, ask the stakeholder for its MoSCoW priority. Do not assign priorities yourself. Record "TBD" only if the stakeholder cannot decide, and note who is expected to decide (e.g., the product owner).
+
+MoSCoW Method: Classifies requirements into four categories:
+1. Must-have: Critical for the current release for it to be a success.
+2. Should-have: Important but not necessary for delivery in the current release.
+3. Could-have: Desirable but not necessary; can be included if time and resources permit.
+4. Won't-have: Agreed upon as not being delivered in the current release.
 
 ### Adequate Detail Level
 
