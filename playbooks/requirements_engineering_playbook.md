@@ -195,6 +195,8 @@ The result is a Product Requirements Document (PRD) containing all requirements 
 
 The PRD is a Markdown file and can contain requirements directly or reference external locations like files and URLs. Each requirement's ID must be mentioned in the PRD.
 
+The PRD begins with the project name and a concise statement of its purpose.
+
 
 ## Prioritization
 
