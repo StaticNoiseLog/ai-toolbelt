@@ -13,9 +13,8 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 
 ### The Importance of Requirements
 
-- Most software failures stem from poor requirements engineering
-- Requirements specifications are valuable products - they can be reused for multiple implementations
-- Getting requirements right demands significant investment and careful attention to detail
+- Poor requirements are a leading cause of software failure; give them careful attention
+- Treat the requirements specification as a standalone product: keep it independent of any particular architecture or implementation, unless specific technology is an explicit stakeholder requirement
 
 ### Embrace Change
 
