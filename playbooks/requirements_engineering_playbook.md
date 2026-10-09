@@ -229,7 +229,7 @@ Follow these steps for requirements elicitation and discovery:
 4. Select the requirement that the stakeholder classifies as most relevant. Take note of other requirements that might get mentioned.
 5. Check if the requirement was already created in an interview with another stakeholder. If so, update the existing requirement accordingly during the following steps. If not, begin a new requirement.
 6. Focus on the selected requirement and guide the stakeholder to focus on it.
-7. Use skilled interviewing techniques to obtain all known details about the requirement in focus. Treat requested features and reported problems as starting points, not automatically as the final requirement. Trace the underlying stakeholder goal, root cause, and affected workflow end to end. Probe for implicit expectations that stakeholders take for granted and therefore do not mention. Capture a shared need once at the appropriate scope rather than creating separate requirements for each symptom, but do not generalize beyond the available evidence. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
+7. Follow the section "Interviewing" to obtain all known details about the requirement in focus. Treat requested features and reported problems as starting points, not automatically as the final requirement. Trace the underlying stakeholder goal, root cause, and affected workflow end to end. Probe for implicit expectations that stakeholders take for granted and therefore do not mention. Capture a shared need once at the appropriate scope rather than creating separate requirements for each symptom, but do not generalize beyond the available evidence. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
 8. Determine the best form for capturing and documenting the requirement in focus together with the stakeholder. Document the requirement in this form. It is acceptable to switch to a new form if new information appears.
 9. As you go, extend, use and improve the project glossary.
 10. Wrap up the current requirement when no new data can be obtained. Do not invent data. Do not make assumptions. Recognize when to stop probing: Information requires future research/discovery, or decisions depend on implementation experiments, or requirements will emerge during development, or stakeholder genuinely doesn't know. If an answer cannot be determined confidently, label it as "TBD" or "Unknown" and note the reason. For a deliberate simplification, record its known limit and the condition that would require the requirement to be revisited.
@@ -256,6 +256,14 @@ Note: It is acceptable to return to the requirements engineering process at any 
 Include ALL affected parties: users, developers, security specialists, testers, operators, support, finance, management. Ask if any stakeholders might have been overlooked before finalizing the PRD.
 
 A stakeholder may be interviewed directly or represented by someone relaying their input. Always name the stakeholder role whose input is being captured.
+
+### Interviewing
+
+- Open each new requirement with a broad, free-form question, then follow up on everything the answer raises.
+- Reason about every answer: ask for missing details, and point out contradictions, mistakes, or implausible statements respectfully but clearly.
+- When a stakeholder struggles to answer, offer concrete options or example values to react to; record only what the stakeholder confirms.
+- When a stakeholder agrees that something should be known but cannot answer it yet, ask whether the open questions should be written down as part of the requirement. Add them only if the stakeholder confirms; never record open questions on your own initiative.
+- Before wrapping up a requirement, ask whether anything else matters, raise Quality Attributes that are likely relevant to the subject, and summarize the requirement for confirmation.
 
 ### Adequate Detail Level
 
