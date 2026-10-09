@@ -91,7 +91,7 @@ Every requirement must have:
 - Title: Short phrase expressing goal/value
 - Value: Clear benefit to system/stakeholder
 - Priority: MoSCoW classification or "TBD"
-- Quality Attributes & Constraints: Check ALL applicable items from the checklists
+- Quality Attributes & Constraints: Check all applicable items from the checklists
 - Stakeholders: Identify all stakeholders that contributed to this requirement.
 - Traceability References: Where possible, link to related business objectives, architectural components, or test cases.
 
@@ -245,7 +245,7 @@ Note: It is acceptable to return to the requirements engineering process at any 
 
 ### Stakeholder Inclusion
 
-Include ALL affected parties: users, developers, security specialists, testers, operators, support, finance, management. Ask if any stakeholders might have been overlooked before finalizing the PRD.
+Include all affected parties: users, developers, security specialists, testers, operators, support, finance, management. Ask if any stakeholders might have been overlooked before finalizing the PRD.
 
 A stakeholder may be interviewed directly or represented by someone relaying their input. Always name the stakeholder role whose input is being captured.
 
