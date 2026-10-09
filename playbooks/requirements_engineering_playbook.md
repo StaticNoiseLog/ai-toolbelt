@@ -44,7 +44,8 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 
 ### Quality Attributes Checklist
 
-- security (authorization, encryption, etc.)
+- security (authentication, authorization, encryption, secrets handling, etc.)
+- privacy (personal data handling, data minimization, consent, data residency, retention and deletion of personal data, etc.)
 - volume (how many, how often)
 - performance (maximum response time, throughput, memory consumption, etc.)
 - scalability (elasticity, performance under varying workloads, expected growth, concurrency, etc.)
@@ -56,9 +57,9 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 - configurability (runtime configuration, scripting, business rules, etc.)
 - modifiability (predictable hotspots for change, etc.)
 - extensibility (plugins, modularity, etc.)
-- portability (ISO standards, platform compatibility, Tomcat, Docker, etc.)
+- portability (platform compatibility, containerization, cloud provider independence, open standards instead of proprietary features, etc.)
 - reusability (requirements of other systems, public API, etc.)
-- integrability (backends, clients, MOM, SOA, etc.)
+- integrability (backend systems, clients, APIs, messaging and event streaming, etc.)
 - testability (API for test, time-travel (simulate system running in the future or past), etc.)
 
 ### Business Constraints Checklist
@@ -68,11 +69,14 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 - time to market
 - expected lifetime
 - rollout schedule
+- regulatory and legal compliance (including mandatory data retention periods)
 
 ### Technical Constraints Checklist
 
 - technology standards
 - tools
+- existing systems
+- hosting and deployment environment (on-premises, cloud provider, regions, etc.)
 - team experience
 
 
