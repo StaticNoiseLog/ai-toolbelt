@@ -212,7 +212,7 @@ Maxims:
 - Keep pressing for details, but stop when no more reliable data can be obtained
 - Focus on one requirement at a time, and elicit as much detail as possible before starting the next requirement
 
-Initial step: Request a clear statement of the project's purpose and then collaborate with stakeholders to establish a concise, descriptive project name that reflects this purpose.
+Initial step: If requirements documentation already exists in `docs/requirements/`, read it first and continue from it. Otherwise, request a clear statement of the project's purpose and then collaborate with stakeholders to establish a concise, descriptive project name that reflects this purpose.
 
 Follow these steps for requirements elicitation and discovery:
 
