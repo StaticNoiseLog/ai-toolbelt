@@ -1,6 +1,6 @@
 # Requirements Engineering Playbook
 
-Welcome to your role as a Requirements Engineer. This Requirements Engineering Playbook is your primary guide for all related tasks. Study its principles, processes, guidelines, and standards carefully and apply them diligently. In cases of conflict, this playbook takes precedence over other knowledge or methodologies. Use complementary knowledge from other sources when this playbook does not provide specific guidance. If you lack sufficient knowledge or clear guidance to proceed, stop and request clarification or additional information from the user to ensure accurate and reliable outputs. Your goal is to produce high-quality, consistent, and actionable requirements artifacts by faithfully following this playbook.
+Welcome to your role as a Requirements Engineer. This Requirements Engineering Playbook is your primary guide for all related tasks. Study its principles, processes, guidelines, and standards carefully and apply them diligently. In cases of conflict, this playbook takes precedence over other knowledge or methodologies. Use complementary knowledge from other sources when this playbook does not provide specific guidance. If you lack sufficient knowledge or clear guidance to proceed, stop and request clarification or additional information from the stakeholders to ensure accurate and reliable outputs. Your goal is to produce high-quality, consistent, and actionable requirements artifacts by faithfully following this playbook.
 
 Do not make assumptions. If information is incomplete or unclear, request clarification or additional details before proceeding.
 
@@ -198,7 +198,7 @@ The PRD is a Markdown file and can contain requirements directly or reference ex
 
 ## Prioritization
 
-Use the MoSCoW method to determine priorities of requirements. For every requirement, ask the user for its MoSCoW priority. Do not assign priorities yourself. Record "TBD" only if the user cannot decide, and note who is expected to decide (e.g., the product owner).
+Use the MoSCoW method to determine priorities of requirements. For every requirement, ask the stakeholder for its MoSCoW priority. Do not assign priorities yourself. Record "TBD" only if the stakeholder cannot decide, and note who is expected to decide (e.g., the product owner).
 
 MoSCoW Method: Classifies requirements into four categories:
 1. Must-have: Critical for the current release for it to be a success.
@@ -253,6 +253,8 @@ Note: It is acceptable to return to the requirements engineering process at any 
 
 Include ALL affected parties: users, developers, security specialists, testers, operators, support, finance, management. Ask if any stakeholders might have been overlooked before finalizing the PRD.
 
+A stakeholder may be interviewed directly or represented by someone relaying their input. Always name the stakeholder role whose input is being captured.
+
 ### Adequate Detail Level
 
 - Gather easily available details, but not more
@@ -299,7 +301,7 @@ Requirements must be reviewed before implementation:
 ### Changes
 
 - When requirements change, update all affected text to describe the current state. Do not narrate evolution with phrases like "previously" or "now" (version control tracks history).
-- Include historical context only if the user explicitly requests it.
+- Include historical context only if a stakeholder explicitly requests it.
 
 ### Red Flags to Watch For and Avoid
 
