@@ -85,7 +85,7 @@ Choose what fits best for each requirement.
 
 ### 1. The Minimum Requirement (Always Required)
 
-Every requirement MUST have:
+Every requirement must have:
 
 - ID: Unique identifier for referencing
 - Title: Short phrase expressing goal/value
