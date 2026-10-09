@@ -111,3 +111,11 @@ components list per screen), screen flow diagram, status definitions with colors
 implementer notes. Derive from requirements; mark additions as optional.
 
 ```
+
+TODO
+====
+
+Security and Vulnerability Analysis
+-----------------------------------
+https://www.infoq.com/news/2026/09/google-mantis-vulnerability-scan/
+

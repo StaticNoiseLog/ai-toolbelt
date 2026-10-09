@@ -196,20 +196,15 @@ The result is a Product Requirements Document (PRD) containing all requirements 
 The PRD is a Markdown file and can contain requirements directly or reference external locations like files and URLs. Each requirement's ID must be mentioned in the PRD.
 
 
-## Prioritization Techniques
+## Prioritization
 
-Use the MoSCoW method and Kano model to determine priorities of requirements.
+Use the MoSCoW method to determine priorities of requirements. For every requirement, ask the user for its MoSCoW priority. Do not assign priorities yourself. Record "TBD" only if the user cannot decide, and note who is expected to decide (e.g., the product owner).
 
 MoSCoW Method: Classifies requirements into four categories:
 1. Must-have: Critical for the current release for it to be a success.
 2. Should-have: Important but not necessary for delivery in the current release.
 3. Could-have: Desirable but not necessary; can be included if time and resources permit.
 4. Won't-have: Agreed upon as not being delivered in the current release.
-
-Kano Model: Focuses on customer satisfaction by classifying features into three main categories:
-1. Basic Needs (Must-haves): Expected features that cause dissatisfaction when missing but don't increase satisfaction when present. Users take these for granted (e.g., login functionality, data persistence).
-2. Performance Needs (Linear): Features where satisfaction increases proportionally with performance/quality. More is better (e.g., faster response times, more storage capacity).
-3. Exciters/Delighters (Attractive): Unexpected features that create high satisfaction when present but don't cause dissatisfaction when absent. These differentiate your product (e.g., innovative UI, surprise automation).
 
 
 ## Requirements Engineering Process
@@ -228,11 +223,11 @@ Follow these steps for requirements elicitation and discovery:
 
 1. Find a relevant stakeholder. Suggest stakeholders if necessary. Skip to step 13 if no new stakeholders can be found.
 2. Name the stakeholder.
-3. Ask the stakeholder about requirements and follow the section "Prioritization Techniques" to prioritize them.
+3. Ask the stakeholder about requirements and follow the section "Prioritization" to prioritize them.
 4. Select the requirement that the stakeholder classifies as most relevant. Take note of other requirements that might get mentioned.
 5. Check if the requirement was already created in an interview with another stakeholder. If so, update the existing requirement accordingly during the following steps. If not, begin a new requirement.
 6. Focus on the selected requirement and guide the stakeholder to focus on it.
-7. Use skilled interviewing techniques to obtain all known details about the requirement in focus. Treat requested features and reported problems as starting points, not automatically as the final requirement. Trace the underlying stakeholder goal, root cause, and affected workflow end to end. Capture a shared need once at the appropriate scope rather than creating separate requirements for each symptom, but do not generalize beyond the available evidence. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
+7. Use skilled interviewing techniques to obtain all known details about the requirement in focus. Treat requested features and reported problems as starting points, not automatically as the final requirement. Trace the underlying stakeholder goal, root cause, and affected workflow end to end. Probe for implicit expectations that stakeholders take for granted and therefore do not mention. Capture a shared need once at the appropriate scope rather than creating separate requirements for each symptom, but do not generalize beyond the available evidence. This includes going through the three checklists "Quality Attributes", "Business Constraints" and "Technical Constraints" which are defined in the "Types of Requirements" section.
 8. Determine the best form for capturing and documenting the requirement in focus together with the stakeholder. Document the requirement in this form. It is acceptable to switch to a new form if new information appears.
 9. As you go, extend, use and improve the project glossary.
 10. Wrap up the current requirement when no new data can be obtained. Do not invent data. Do not make assumptions. Recognize when to stop probing: Information requires future research/discovery, or decisions depend on implementation experiments, or requirements will emerge during development, or stakeholder genuinely doesn't know. If an answer cannot be determined confidently, label it as "TBD" or "Unknown" and note the reason. For a deliberate simplification, record its known limit and the condition that would require the requirement to be revisited.
