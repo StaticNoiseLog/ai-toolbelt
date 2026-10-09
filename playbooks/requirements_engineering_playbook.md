@@ -233,7 +233,7 @@ Follow these steps for the requirements review process:
 
 1. Make all stakeholders read all requirements.
 2. To resolve contradictory input, facilitate a discussion between the involved stakeholders and guide them toward a definitive resolution.
-3. Verify that all requirements are captured in an appropriate and consistent form without spelling errors.
+3. Verify that every requirement is understandable, states its value clearly, uses glossary terms correctly, and is captured in an appropriate and consistent form without spelling errors.
 4. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify and document the smallest practical acceptance check that would detect a failure to satisfy it.
 5. Confirm that all stakeholders agree with each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
 6. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
@@ -274,14 +274,6 @@ MoSCoW Method: Classifies requirements into four categories:
 - Avoid analysis paralysis
 - Progressive enrichment: analysis during implementation reveals new details to be added to the requirements
 - Different requirements can have different detail levels
-
-### Review Process
-
-Requirements must be reviewed before implementation:
-
-- Is requirement understandable?
-- Is value clear?
-- Are glossary terms used correctly?
 
 
 ## Writing Guidelines
