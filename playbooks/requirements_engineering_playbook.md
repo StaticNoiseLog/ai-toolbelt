@@ -123,26 +123,12 @@ Acceptance Criteria in this form:
 
 ### 6. Use Case
 
-A use case defines how the system should behave in response to a stakeholder's request to achieve a specific goal. It is presented as a scenario outlining the sequence of interactions between the system and its actors.
+A scenario of interactions between actors and the system that leads to one specific goal.
 
-Key Characteristics of Use Cases:
-- Each use case focuses on achieving a single, specific goal. If multiple goals exist, create separate use cases for each.
-- Use cases are not suitable for requirements that cannot be expressed as scenarios, such as user interfaces or business rules.
-
-Actors in a Use Case:
-- An actor is an external entity that interacts with the system, such as a user, another system, or a time-based event.
-- The primary actor is typically the stakeholder who initiates the use case to achieve their goal, though in some cases, another actor or event may trigger it.
-- Actors are usually roles rather than specific individuals, job titles, or entities, though they can occasionally overlap.
-
-Steps to Create Use Cases:
-1. Identify the actors involved.
-2. List the goals of each actor.
-3. Add brief descriptions to clarify the goals.
-4. Draft an initial use case for each goal by outlining the basic flow of interactions.
-5. Describe the main success scenario for each use case, detailing the steps from initiation to goal achievement.
-6. Identify exceptions to the main success scenario and document them as extensions (alternative paths or error conditions).
-7. Validate the use cases with stakeholders to ensure accuracy and completeness.
-8. Refine and optimize the use cases based on feedback and new insights.
+- One goal per use case; split use cases with multiple goals
+- Actors are roles, external systems, or time-based events; the primary actor is the one whose goal the use case serves and who usually initiates it
+- Describe the main success scenario as numbered steps, then document alternative paths and error conditions as extensions
+- Not suitable for requirements that cannot be expressed as scenarios, such as user interfaces or business rules
 
 ### 7. Diagrams
 
