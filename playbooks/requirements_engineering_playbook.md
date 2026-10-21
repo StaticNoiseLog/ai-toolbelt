@@ -225,12 +225,11 @@ Follow these steps for requirements elicitation and discovery:
 
 Follow these steps for the requirements review process:
 
-1. Make all stakeholders read all requirements.
-2. To resolve contradictory input, facilitate a discussion between the involved stakeholders and guide them toward a definitive resolution.
-3. Verify that every requirement is understandable, states its value clearly, uses glossary terms correctly, and is captured in an appropriate and consistent form without spelling errors.
-4. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify and document the smallest practical acceptance check that would detect a failure to satisfy it.
-5. Confirm that all stakeholders agree with each requirement (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
-6. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
+1. To resolve contradictory input, facilitate a discussion between the involved stakeholders and guide them toward a definitive resolution.
+2. Verify that every requirement is understandable, states its value clearly, uses glossary terms correctly, and is captured in an appropriate and consistent form without spelling errors.
+3. Verify that every requirement is testable or otherwise verifiable. For non-trivial behavior, identify and document the smallest practical acceptance check that would detect a failure to satisfy it.
+4. Have all stakeholders read all requirements and confirm that they agree with each one (not just the ones they contributed to). If no agreement can be found, use the requirements elicitation to clarify any open issues.
+5. Organize all requirements so that they are either contained in the Product Requirements Document (PRD) or are referenced by it.
 
 Note: It is acceptable to return to the requirements engineering process at any time in the project. The requirements specification is expected to be kept up-to-date as knowledge about the system is gained.
 
@@ -279,9 +278,9 @@ MoSCoW Method: Classifies requirements into four categories:
 
 ### Value Focus
 
-- Express technical stories in business value terms, for example: Instead of "Add database pooling" (technical solution) write "Improve user retention with short page load times" (what the user actually wants)
+- Express technical stories in business value terms, for example: Instead of "Add database pooling" (technical solution) write "Pages load within 1 second so that users do not abandon the site" (what the user actually wants)
 - Ask: "Does this make the application better?"
-- Customer is not always right - determine what's right for the application
+- Customer is not always right - challenge requests that do not serve the application and propose alternatives, but leave the decision to the stakeholders
 
 ### Simplicity
 
