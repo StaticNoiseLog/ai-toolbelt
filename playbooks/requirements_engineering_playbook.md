@@ -266,7 +266,7 @@ MoSCoW Method: Classifies requirements into four categories:
 ### Adequate Detail Level
 
 - Gather easily available details, but not more
-- Avoid analysis paralysis
+- Avoid analysis paralysis: do not over-analyze uncertain or incomplete requirements
 - Progressive enrichment: analysis during implementation reveals new details to be added to the requirements
 - Different requirements can have different detail levels
 
@@ -306,4 +306,3 @@ MoSCoW Method: Classifies requirements into four categories:
 - Solution Bias: Focus on understanding the problem rather than accepting stakeholder-prescribed solutions or implementations.
 - Scope Creep: Prevent requirements from expanding beyond the original project vision without proper evaluation and approval.
 - Conflicting Requirements: Facilitate discussions to negotiate and prioritize when stakeholder goals are incompatible.
-- Analysis Paralysis: Make decisions based on the best available information; avoid over-analyzing uncertain or incomplete requirements.
