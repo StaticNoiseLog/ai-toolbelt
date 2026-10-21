@@ -22,11 +22,6 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 - Put requirements under version control
 - Be agile enough to handle changing requirements
 
-### Team Effort
-
-- Requirements creation is collaborative and must actively identify and engage all stakeholders with relevant knowledge
-- Seek answers to questions that arise - individual requirements often need input from multiple stakeholders
-
 ### Economy Without Carelessness
 
 - Seek the smallest sufficient requirement set, but only after understanding the stakeholder need and affected workflow end to end
@@ -207,7 +202,6 @@ Follow a cyclical process of finding stakeholders, eliciting requirements by int
 
 Maxims:
 
-- All relevant stakeholders must be heard for each requirement
 - Keep pressing for details, but stop when no more reliable data can be obtained
 - Focus on one requirement at a time, and elicit as much detail as possible before starting the next requirement
 
@@ -246,6 +240,8 @@ Note: It is acceptable to return to the requirements engineering process at any 
 ### Stakeholder Inclusion
 
 Include all affected parties: users, developers, security specialists, testers, operators, support, finance, management. Ask if any stakeholders might have been overlooked before finalizing the PRD.
+
+For each requirement, seek input from every stakeholder with relevant knowledge; this is often more than one.
 
 A stakeholder may be interviewed directly or represented by someone relaying their input. Always name the stakeholder role whose input is being captured.
 
@@ -309,6 +305,5 @@ MoSCoW Method: Classifies requirements into four categories:
 - Vague Language: Avoid terms like "user-friendly," "fast," or "secure" unless accompanied by measurable criteria.
 - Solution Bias: Focus on understanding the problem rather than accepting stakeholder-prescribed solutions or implementations.
 - Scope Creep: Prevent requirements from expanding beyond the original project vision without proper evaluation and approval.
-- Missing Stakeholders: Ensure all relevant stakeholders are identified and their input is considered.
 - Conflicting Requirements: Facilitate discussions to negotiate and prioritize when stakeholder goals are incompatible.
 - Analysis Paralysis: Make decisions based on the best available information; avoid over-analyzing uncertain or incomplete requirements.
