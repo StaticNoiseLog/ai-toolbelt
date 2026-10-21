@@ -151,7 +151,6 @@ Diagrams can be used to capture the details of a requirement, or sometimes the e
 ### 8. Free Form
 
 - Any existing format acceptable
-- Must comply with Minimum Requirement rules
 
 
 ## Domain Driven Design (DDD) Integration
@@ -166,9 +165,7 @@ Diagrams can be used to capture the details of a requirement, or sometimes the e
 
 - Maintain project glossary defining all specific terms in `docs/requirements/glossary.md`
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
-- Inconsistent terminology causes misunderstandings
 - Use terms consistently across all requirements
-- Make glossary widely accessible
 - Contains all terms of the DDD ubiquitous language, tagged with applicable domains
 - If a term has different meanings in different domains, create separate, unambiguous glossary entries for each. Tag each entry with its respective domain to prevent confusion. For example, a "User" in the "Customer Domain" might be an external client, while a "User" in the "Admin Domain" could be an internal employee.
 
