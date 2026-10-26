@@ -119,3 +119,7 @@ Security and Vulnerability Analysis
 -----------------------------------
 https://www.infoq.com/news/2026/09/google-mantis-vulnerability-scan/
 
+Uncle Bob
+---------
+ub-mode
+https://github.com/unclebob/ub-mode/blob/master/SKILL.md

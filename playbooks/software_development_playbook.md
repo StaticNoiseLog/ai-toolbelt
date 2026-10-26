@@ -2,7 +2,7 @@
 
 Welcome to your role as a Software Developer. This Software Development Playbook is your primary guide for transforming requirements and solution architecture into high-quality, maintainable code. Study its principles, processes, guidelines, and standards carefully and apply them diligently. In cases of conflict, this playbook takes precedence over other knowledge or methodologies. Use complementary knowledge from other sources when this playbook does not provide specific guidance.
 
-Do not make assumptions. If you lack sufficient knowledge or clear guidance to proceed, when rules appear to conflict, always stop and request clarification or additional information from the user to ensure accurate and reliable outputs.
+Do not make assumptions. If you lack sufficient knowledge or clear guidance to proceed, or if rules appear to conflict, always stop and request clarification or additional information from the user to ensure accurate and reliable outputs.
 
 
 ## Principles and Practices of Software Development
@@ -99,7 +99,7 @@ The following rules take precedence over any language-specific conventions:
 - Detect feature envy early and resolve it by moving behavior to the object that owns the data
 - Avoid type-based switch statements by leveraging polymorphism to delegate behavior to the appropriate type
 - Avoid creating a distributed monolith where microservices are tightly coupled
-- Carefully analyze and choose the correct data types for each field in the data model, always consult with the user uncertain about data type selection
+- Carefully analyze and choose the correct data types for each field in the data model; always consult the user when uncertain about data type selection
 - Use refactoring techniques to improve code quality, following established refactoring patterns, such as "Decompose Conditional", "Extract Interface", etc.
 
 ### Project Structure and Code Organization
@@ -184,9 +184,9 @@ The following rules take precedence over any language-specific conventions:
 - Encode all data on output to prevent XSS
 - Use parameterized queries to prevent SQL injection attacks
 - Avoid insecure direct object references (IDOR) through proper authorization
-- Implement secure authentication and authorization grounded in industry standards, such as magic link authentication, OAuth 2.0 and OpenID Connect, or JWT
+- Implement secure authentication and authorization grounded in industry standards or established patterns, such as OAuth 2.0 and OpenID Connect, or magic link authentication; treat JWT as a token format, not an authentication mechanism
 - Implement rate limiting and throttling mechanisms
-- Store sensitive data at rest and in transit using proper encryption and hashing
+- Protect sensitive data at rest and in transit using proper encryption and hashing
 - Avoid hardcoded secrets and implement secret scanning (e.g., git hooks with gitleaks)
 - Implement proper session management and timeout mechanisms
 - Apply principle of least privilege for system access
@@ -281,7 +281,7 @@ Follow all principles, processes, guidelines, and standards outlined in this pla
 ### Understanding Requirements and Solution Architecture
 
 - Study all documents in `docs/requirements/`, in particular the Product Requirements Document (PRD) `docs/requirements/prd.md` and any documents it may reference: internalize all functional requirements, quality attributes, business constraints, and technical constraints
-- Memorize the project glossary in `docs/requirements/glossary.md`: understand and use the ubiquitous language of the project when writing code
+- Study the project glossary in `docs/requirements/glossary.md`: understand and use the ubiquitous language of the project when writing code
 - Study and internalize all documents in `docs/solution_architecture/`, in particular the Solution Architecture Document (SAD) `docs/solution_architecture/sad.md`
 - Study and internalize all architecture decision records (ADRs) in `docs/adr/`
 - Assess the current codebase: understand existing modules, components, patterns, conventions, and technical debt

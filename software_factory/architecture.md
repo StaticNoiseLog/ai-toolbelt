@@ -258,3 +258,68 @@ If the Temporal + ADK-Rust dual-stack is more than desired initially:
 - MetaGPT: https://github.com/FoundationAgents/MetaGPT, https://mgx.dev
 - ChatDev: https://github.com/OpenBMB/ChatDev
 - Devin: https://cognition.com
+
+# Distributed System
+
+https://www.infoq.com/articles/distributed-systems-microservices-agentic-ai/?
+
+Agentic AI systems shift distributed systems design from orchestrating services to orchestrating decisions made at runtime.
+
+# Actors for Agents: Patterns for Production AI
+
+https://www.infoq.com/presentations/actors-for-production-ai-agents/
+
+## Core Problem: The Shift from Demo to Production
+
+Agent demos rely on simple prompt chains and request-response loops. In production, runtime complexities break this model:
+
+* **Time:** Operations are asynchronous and long-running; tool calls take minutes, APIs rate-limit, and users respond slowly.
+* **Interaction:** Workflows are open-ended; users ask for updates, provide follow-ups, or alter parameters while execution is in flight.
+* **Delegation:** Agents construct non-linear, mutable execution graphs dynamically rather than following predefined, static paths.
+* **Failure:** External service outages, restarts, timeouts, and rate limits are normal operating conditions rather than rare exceptions.
+* **Architecture fragmentation:** Traditional architectures split agent identity across disjointed services (queues, databases, chat histories, retry logic), making the system fragile and difficult to maintain.
+
+---
+
+## The Actor Model as a Solution
+
+Production agents function as distributed systems: concurrent, stateful, independent, and prone to partial failure. The actor model resolves these challenges through core foundational concepts:
+
+* **Private State Ownership:** Only the owning actor modifies its internal state; external entities interact solely by passing messages.
+* **Message-Driven Communication:** All events—user queries, tool results, cancellations, and errors—pass through a single, unified mailbox.
+* **Supervision Boundaries:** Failures are contained locally and handled according to architectural policies (retry, restart, escalate, or degrade gracefully) instead of ad-hoc `try-catch` blocks.
+
+---
+
+## 5 Production Patterns for Agent Runtime
+
+1. **Task as Universal Execution Primitive:** Every unit of work (chat session, workflow, background job, tool call, human-in-the-loop wait) shares the same actor contract: identity, mailbox, lifecycle, state, and supervision.
+2. **Write-Through State:** State changes are written durably upon processing incoming messages. Recovery from a crash is identical to normal execution resumption.
+3. **Indirect Continuations:** Long waits (e.g., slow tool execution or pending user input) store intent as state rather than keeping active call stacks open or threads blocked.
+4. **Mutable Execution Graph:** Agents dynamically spawn child actors and subtasks as new information surfaces, adjusting the execution plan at runtime.
+5. **Supervision Boundaries:** Failures are isolated to specific actors, allowing parents to apply explicit policies (e.g., retrying a tool or returning partial results) without crashing the broader workflow.
+
+---
+
+## Key Payoffs
+
+* **Consolidated State:** Eradicates fragmented state across external storage, queues, and caches.
+* **Addressable Identity:** Work units have durable handles, enabling asynchronous steering, follow-ups, and status checks.
+* **Unified Recovery and Resumption:** Rehydrating an actor from durable storage handles both ordinary interruptions and crash recovery through the same path.
+* **Contained Failure:** Errors remain localized, preventing cascading failures across the entire system.
+
+---
+
+## Architectural Checklist
+
+When architecting production agent platforms, determine:
+
+* Which components act as **actors**?
+* What specific **state** does each actor own?
+* Which **messages** do actors exchange through their mailboxes?
+* Which elements can **fail independently**?
+* Which actors serve as **supervisors**, and what are their containment policies?
+
+# Architectures for AI
+
+https://www.infoq.com/articles/agentic-ai-architecture-article-series/
