@@ -55,7 +55,7 @@ The following rules take precedence over any language-specific conventions:
 - Programming language (unless specified in PRD/SAD): default to Kotlin, Rust, Python, HTML5 with JavaScript, and Bash Shell
 - Build system (unless specified in PRD/SAD): for JVM languages, always use Gradle with Kotlin DSL; for Rust, use Cargo; for JavaScript, default to Vite or Bun; for Python, default to pip with virtual environments (consider Poetry and pixi)
 - Consider the risk of dependency hell from transitive dependencies; use modern build system features to mitigate this, such as Gradle's version constraints or Cargo's `patch` feature
-- Use Git as the version control system with the "git merge" strategy; use "git rebase" only after consulting with the user
+- Expect Git as the version control system by default; the user performs all write operations (e.g., init, commit, branch, push), so perform them only when explicitly asked to; use read operations (e.g., log, diff, blame) whenever useful, such as to understand the history of code when fixing bugs
 - Persistence technology (unless specified in PRD/SAD): choose based on data model and access patterns (SQL, NoSQL, Time Series), considering consistency requirements (ACID vs BASE) and guarantees (CAP theorem)
 
 ### Code Quality and Craftsmanship
@@ -110,14 +110,14 @@ The following rules take precedence over any language-specific conventions:
 
 - Use centralized version management, for Gradle projects this is done in `gradle/libs.versions.toml`
 - Declare dependencies with the narrowest scope (e.g., Gradle `implementation` over `api`, test-only dependencies in test scope)
-- Follow the ecosystem's standard practice for lock files (e.g., keep `package-lock.json` or `Cargo.lock` under version control); where lock files are optional (e.g., Gradle dependency locking), recommend them when preparing the first production release (e.g., before tagging version 1.0.0)
+- Follow the ecosystem's standard practice for lock files (e.g., do not exclude `package-lock.json` or `Cargo.lock` from version control); where lock files are optional (e.g., Gradle dependency locking), recommend them when preparing the first production release (e.g., before tagging version 1.0.0)
 - Use build system constructs such as Gradle multi-project builds or Cargo workspaces to organize project artifacts for building, dependency management, and deployment, but not for technical code encapsulation
 - Package the application into immutable artifacts like Docker containers
 - Implement proper artifact versioning and storage
 - Write a CI/CD pipeline that builds and tests the application automatically and deploys it to the environments defined in the SAD; default to GitHub Actions unless specified otherwise
 - Keep pipeline logic in build tool tasks or scripts that run the same way locally and in CI, with the CI configuration as a thin trigger; for complex or multi-language pipelines, consider Dagger (https://dagger.io/)
 - Ensure every deployment can be rolled back; where availability requirements or the SAD call for minimal downtime, support deployment strategies like Blue-Green or Canary and automate rollback
-- Use infrastructure as code for environment provisioning and to avoid deployment snowflakes
+- For deployed services, provision their environments with infrastructure as code to avoid deployment snowflakes
 
 ### Managing Cross-Cutting Concerns
 
@@ -125,7 +125,7 @@ The following rules take precedence over any language-specific conventions:
 - Accessibility: Follow WCAG 2.1 AA standards for web applications; ensure keyboard navigation, screen reader compatibility, and color contrast
 - If there are de facto standards for cross-cutting concerns in an ecosystem, use them (such as SLF4J and Micrometer for Spring Boot)
 - Implement externalized, type-safe configuration, injected at runtime and validated on startup; use hierarchical environment overlays for each environment the application runs in (e.g., dev, test, prod)
-- Keep non-secret configuration under version control; add configuration rollback, monitoring and alerting on configuration changes, and drift detection between environments where the SAD or operational requirements call for them
+- Keep secret configuration values out of version-controlled files (e.g., inject them via environment variables or a secret store); add configuration rollback, monitoring and alerting on configuration changes, and drift detection between environments where the SAD or operational requirements call for them
 - Where requirements call for configuration changes without a restart, support dynamic reloading and validate configuration on reload
 - Document all configuration settings and their purposes, preferably directly in the configuration store, otherwise in `docs/development/configuration.md`; for parameters defined in the SAD, reference the SAD instead of repeating their values and rationale
 - Logging (unless specified in PRD/SAD): default to the RFC 5424 syslog message format; avoid structured formats like JSON unless explicitly requested
@@ -134,7 +134,7 @@ The following rules take precedence over any language-specific conventions:
 - Ensure error handling prevents data loss at persistence and other irreversible boundaries
 - Do not assume hardware, clocks, sensors, or networks behave ideally; account for drift, noise, calibration, latency, and failure where the system depends on them
 - For operations with expected transient failures (e.g., network calls), implement retry mechanisms that ensure idempotency, handling transient errors gracefully while preventing disruptive or duplicative repeated executions, and log retries
-- Establish a centralized error mapping system to convert application errors into meaningful messages or codes, avoiding ad hoc mapping, and document these error codes
+- Map application errors to meaningful messages or codes in one central place rather than ad hoc, and document the error codes
 - Design centralized logging, monitoring and alerting as required to fulfill the requirements in the PRD and SAD
 - In systems with multiple services or asynchronous processing, add correlation IDs for request tracking, and propagate and log them; enable distributed tracing where the SAD or operational requirements call for it
 - Implement audit trails for critical actions
@@ -231,7 +231,6 @@ Refactoring Workflow:
 
 - Determine target code area based on triggers and priority
 - Ensure at least 80% test coverage before refactoring
-- Create feature branch for refactoring
 - Use established refactoring patterns (e.g., Extract Method, Decompose Conditional, Extract Interface, Replace Conditional with Polymorphism)
 - Confirm all tests pass and performance metrics meet requirements
 - Reflect changes in relevant documentation; if the refactor impacts architecture, document it as an architecture decision record in `docs/adr/`
@@ -265,7 +264,6 @@ Refactoring Workflow:
 - If it does not exist, create the project structure with the known modules and components - or add new modules and components to the existing project structure
 - If it does not exist, set up the build system according to the project's needs for building, packaging and deployment - or update the existing build system to incorporate what is needed for the next task
 - Implement the task using the Red-Green-Refactor cycle, diligently following all guidelines in this playbook
-- Use feature branches; prefer long-lived branches only for major releases
 
 ### Quality Assurance
 
@@ -278,8 +276,18 @@ Refactoring Workflow:
 - Perform linting and static code analysis (e.g., detekt) and resolve all warnings and errors through clean code; never suppress warnings (e.g., @Suppress); if no clean solution is apparent, ask the user for guidance
 - Perform functional, performance, and security testing based on requirements and quality attributes; make any necessary improvements
 - If tests reveal architectural shortcomings, revisit the SAD and propose updates
-- After reviewing the code yourself, commit and push your changes to a feature branch, open a pull request (or equivalent in the chosen VCS), and only merge after approval and successful CI pipeline execution
+- After reviewing the code yourself, present the changes to the user for review with a summary of what changed and why, and wait for feedback before starting the next task
 - After each task completion, update `docs/development/backlog.md` with "DONE" to mark completion
+
+### Small Changes
+
+Use this shortened process instead of the full process above for small changes the user requests directly (e.g., a bug fix or minor adjustment) that stay within one component and do not alter public interfaces, data schemas, dependencies, or architectural decisions:
+
+- Study only the documents and code relevant to the change
+- Skip task breakdown, estimation, prioritization, and backlog updates
+- Implement using the Red-Green-Refactor cycle; for a bug fix, start with a test that reproduces the bug
+- Apply the "Quality Assurance" steps, including the user review
+- When unsure whether a change qualifies, ask the user; if it turns out to exceed these limits, stop and switch to the full process
 
 
 ## Artifact Naming and Organization
