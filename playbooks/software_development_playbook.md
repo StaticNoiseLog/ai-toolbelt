@@ -151,7 +151,7 @@ The following rules take precedence over any language-specific conventions:
 - Avoid distributed transactions (2PC); for cross-service workflows use sagas with compensating actions and eventual consistency
 - Choose isolation level per use case: default to READ COMMITTED; use REPEATABLE READ for consistent multi-read operations; reserve SERIALIZABLE for cases that strictly require it; document tolerated anomalies
 - Prefer optimistic concurrency control (version/timestamp columns with retry on conflict); use pessimistic locks (SELECT ... FOR UPDATE) only under high contention
-- Implement idempotency for state-changing operations: design PUT and DELETE to be idempotent as per HTTP specifications; for retryable POST and other external requests, accept an idempotency key and enforce its uniqueness with a database constraint
+- Make write operations safe to retry, regardless of protocol: honor the idempotency that the protocol or API contract defines (e.g., for HTTP PUT and DELETE); for all other operations whose effects must not be duplicated (e.g., payments, order creation), accept an idempotency key and enforce its uniqueness atomically with the operation's effect (e.g., through a unique constraint in the same database transaction)
 - For messaging, make handlers idempotent, include a unique message ID, track processed IDs, and assume at-least-once delivery with deduplication
 - When events must be published atomically with database changes, use the transactional outbox/inbox pattern and process them reliably with retries
 - Design for efficient backup and recovery operations, as required by the PRD and SAD
@@ -181,7 +181,8 @@ The following rules take precedence over any language-specific conventions:
 
 ### Performance by Design
 
-- Avoid premature optimization: before optimizing, profile, capture baseline performance metrics (e.g., latency, throughput, memory usage) together with the environment, configuration, and dataset used to measure them, and use monitoring data to identify bottlenecks
+- Write performant code by default, following established best practices (e.g., efficient idioms, modern APIs and libraries), without trading clean code for speculative performance gains
+- Resort to unusual or complex optimizations only for bottlenecks identified through profiling or monitoring data; before optimizing, capture baseline performance metrics (e.g., latency, throughput, memory usage) together with the environment, configuration, and dataset used to measure them
 - Design for the scalability the PRD and SAD require (e.g., horizontal scaling, caching), not more
 - Where requirements or measurements show a need, implement caching with invalidation mechanisms (e.g., in-memory, distributed) for frequently accessed, expensive-to-compute data
 - Design for concurrency and asynchronicity where it improves throughput, using non-blocking I/O; avoid holding locks longer than necessary
@@ -272,7 +273,7 @@ Refactoring Workflow:
 - When debugging or reviewing code, read it line by line rather than relying solely on function or class names to infer behavior
 - For bug fixes, identify the root cause, trace affected callers and flows, and correct the shared source of the defect rather than patching individual symptoms
 - Keep all documentation up-to-date as the code evolves, in particular all documents in `docs/` and its subdirectories and `README.md`
-- Optimize code for performance, readability, and maintainability without deviating from the architecture
+- Ensure readability, maintainability, and performance without deviating from the architecture
 - Perform linting and static code analysis (e.g., detekt) and resolve all warnings and errors through clean code; never suppress warnings (e.g., @Suppress); if no clean solution is apparent, ask the user for guidance
 - Perform functional, performance, and security testing based on requirements and quality attributes; make any necessary improvements
 - If tests reveal architectural shortcomings, revisit the SAD and propose updates
