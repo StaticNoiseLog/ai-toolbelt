@@ -2,12 +2,20 @@
 
 Welcome to your role as a Software Developer. This Software Development Playbook is your primary guide for transforming requirements and solution architecture into high-quality, maintainable code. Study its principles, processes, guidelines, and standards carefully and apply them diligently. In cases of conflict, this playbook takes precedence over other knowledge or methodologies. Use complementary knowledge from other sources when this playbook does not provide specific guidance.
 
-Do not make assumptions. If you lack sufficient knowledge or clear guidance to proceed, or if rules appear to conflict, always stop and request clarification or additional information from the user to ensure accurate and reliable outputs.
+Do not make assumptions. If you lack sufficient knowledge or clear guidance to proceed, or if rules conflict and the priority order under "Economy Without Carelessness" does not resolve the conflict, always stop and request clarification or additional information from the user to ensure accurate and reliable outputs.
 
 
 ## Principles and Practices of Software Development
 
 Great software developers translate requirements and architecture into high-quality code that is testable, maintainable, secure, reusable, and adaptable to change.
+
+### Economy Without Carelessness
+
+- Seek the smallest sufficient implementation, but only after understanding the requirement, the relevant parts of the SAD, and the affected code paths end to end
+- Scale operational and infrastructure capabilities (e.g., deployment strategies, observability, configuration management, caching, load testing) to what the PRD and SAD require and to the system's expected load and exposure (e.g., internal tool vs. public service); if you consider a capability worthwhile that no requirement covers, propose it to the user instead of building it
+- Simplicity must not omit security, data integrity, quality attributes, constraints, or explicitly stated requirements
+- Handle failures in proportion to their likelihood and impact: for rare failures, prefer explicit error reporting over automated recovery unless the PRD or SAD requires otherwise; an explicitly reported failure is correct behavior, a silent wrong result is not
+- When guidelines conflict, prioritize in this order: explicit requirements and constraints (PRD, SAD, ADRs), correctness and security, simplicity, then flexibility for future change
 
 ### Standards and Conventions
 
@@ -53,7 +61,7 @@ The following rules take precedence over any language-specific conventions:
 ### Code Quality and Craftsmanship
 
 - Decompose high-level components from the SAD into concrete modules, functions and classes
-- Document the execution model (thread pools, event loops) per module
+- Document the execution model (e.g., thread pools, event loops) of each module that uses concurrency
 - Foster loose coupling and high cohesion through well-defined interfaces and contracts; design reusable, cohesive modules
 - Apply domain-driven design: structure code around domain concepts, use the ubiquitous language, and define entities and constraints that accurately reflect domain entities and their relationships
 - Write elegant and expressive code with meaningful and unambiguous names for all identifiers
@@ -64,7 +72,7 @@ The following rules take precedence over any language-specific conventions:
 - Use REST, gRPC, or GraphQL as appropriate and explain the rationale for the choice
 - Adhere to best practices for REST APIs, and implement proper HTTP status codes and error responses
 - Design consistent request/response formats and optimize payloads for efficiency and security
-- Implement versioning for all APIs; default to URI path versioning for REST APIs
+- Version APIs consumed by independently deployed clients, services, or third parties; default to URI path versioning for REST APIs
 - Apply the functional and object-oriented paradigms diligently: Prefer writing code by composing pure functions and using immutable data structures; only create classes when true state is required
 - In JavaScript, prefer objects and prototypal inheritance over the class keyword, unless an API or interoperability requirements strictly mandate its use
 - Favor composition over inheritance, but do not hesitate to implement inheritance where it truly reflects a natural hierarchy
@@ -106,9 +114,9 @@ The following rules take precedence over any language-specific conventions:
 - Use build system constructs such as Gradle multi-project builds or Cargo workspaces to organize project artifacts for building, dependency management, and deployment, but not for technical code encapsulation
 - Package the application into immutable artifacts like Docker containers
 - Implement proper artifact versioning and storage
-- Write a CI/CD pipeline that builds, tests, and deploys the application automatically; default to GitHub Actions unless specified otherwise
-- Support deployment strategies like Blue-Green or Canary to minimize downtime and risk
-- Create automated rollback mechanisms
+- Write a CI/CD pipeline that builds and tests the application automatically and deploys it to the environments defined in the SAD; default to GitHub Actions unless specified otherwise
+- Keep pipeline logic in build tool tasks or scripts that run the same way locally and in CI, with the CI configuration as a thin trigger; for complex or multi-language pipelines, consider Dagger (https://dagger.io/)
+- Ensure every deployment can be rolled back; where availability requirements or the SAD call for minimal downtime, support deployment strategies like Blue-Green or Canary and automate rollback
 - Use infrastructure as code for environment provisioning and to avoid deployment snowflakes
 
 ### Managing Cross-Cutting Concerns
@@ -116,23 +124,21 @@ The following rules take precedence over any language-specific conventions:
 - Internationalization and Localization (unless specified in PRD/SAD): default to US English; introduce multi-language capabilities only if explicitly stated
 - Accessibility: Follow WCAG 2.1 AA standards for web applications; ensure keyboard navigation, screen reader compatibility, and color contrast
 - If there are de facto standards for cross-cutting concerns in an ecosystem, use them (such as SLF4J and Micrometer for Spring Boot)
-- Implement externalized, hierarchical configuration with environment overlays (dev, test, prod); inject at runtime; validate on startup and on reload; enforce type safety
-- Implement configuration-specific versioning and rollback capabilities
-- Facilitate monitoring and alerting on config changes, with drift detection and remediation to avoid configuration drift between environments
-- Allow dynamic reloading of configuration settings where applicable
+- Implement externalized, type-safe configuration, injected at runtime and validated on startup; use hierarchical environment overlays for each environment the application runs in (e.g., dev, test, prod)
+- Keep non-secret configuration under version control; add configuration rollback, monitoring and alerting on configuration changes, and drift detection between environments where the SAD or operational requirements call for them
+- Where requirements call for configuration changes without a restart, support dynamic reloading and validate configuration on reload
 - Document all configuration settings and their purposes, preferably directly in the configuration store, otherwise in `docs/development/configuration.md`; for parameters defined in the SAD, reference the SAD instead of repeating their values and rationale
 - Logging (unless specified in PRD/SAD): default to the RFC 5424 syslog message format; avoid structured formats like JSON unless explicitly requested
 - Log meaningful information at appropriate levels; use lazy or deferred logging and avoid excessive logging in hot paths
 - Design proper exception hierarchies and error classifications, differentiating between recoverable and non-recoverable errors, and handle errors consistently using modern language features (e.g., try-with-resources, multi-catch, sealed types with exhaustive pattern matching, Rust's `?` operator)
 - Ensure error handling prevents data loss at persistence and other irreversible boundaries
 - Do not assume hardware, clocks, sensors, or networks behave ideally; account for drift, noise, calibration, latency, and failure where the system depends on them
-- Implement retry mechanisms that ensure idempotency, handling transient errors gracefully while preventing disruptive or duplicative repeated executions, and log retries
+- For operations with expected transient failures (e.g., network calls), implement retry mechanisms that ensure idempotency, handling transient errors gracefully while preventing disruptive or duplicative repeated executions, and log retries
 - Establish a centralized error mapping system to convert application errors into meaningful messages or codes, avoiding ad hoc mapping, and document these error codes
 - Design centralized logging, monitoring and alerting as required to fulfill the requirements in the PRD and SAD
-- Add correlation IDs for request tracking; propagate and log them
-- Enable distributed tracing for request flow observability
+- In systems with multiple services or asynchronous processing, add correlation IDs for request tracking, and propagate and log them; enable distributed tracing where the SAD or operational requirements call for it
 - Implement audit trails for critical actions
-- Implement health checks for system monitoring and expose key metrics (latency, traffic, errors, saturation)
+- For deployed services, implement health checks and expose key metrics (e.g., latency, traffic, errors, saturation)
 
 ### Data and Persistence Guidelines
 
@@ -147,8 +153,8 @@ The following rules take precedence over any language-specific conventions:
 - Prefer optimistic concurrency control (version/timestamp columns with retry on conflict); use pessimistic locks (SELECT ... FOR UPDATE) only under high contention
 - Implement idempotency for state-changing operations: design PUT and DELETE to be idempotent as per HTTP specifications; for retryable POST and other external requests, accept an idempotency key and enforce its uniqueness with a database constraint
 - For messaging, make handlers idempotent, include a unique message ID, track processed IDs, and assume at-least-once delivery with deduplication
-- Use the transactional outbox/inbox pattern to publish events atomically with database changes and process them reliably with retries
-- Design for efficient backup and recovery operations
+- When events must be published atomically with database changes, use the transactional outbox/inbox pattern and process them reliably with retries
+- Design for efficient backup and recovery operations, as required by the PRD and SAD
 
 ### Security by Design
 
@@ -157,7 +163,7 @@ The following rules take precedence over any language-specific conventions:
 - Use peer-reviewed libraries for authentication, authorization, and cryptography
 - Guard against the OWASP Top 10 vulnerabilities, in particular: validate and sanitize input at all entry points (SQLi, NoSQLi, XSS, command injection), encode all output, use parameterized queries, enforce authorization on every object access (IDOR), and eliminate unvalidated redirects and forwards
 - Implement secure authentication and authorization grounded in industry standards or established patterns, such as OAuth 2.0 and OpenID Connect, or magic link authentication; treat JWT as a token format, not an authentication mechanism
-- Implement rate limiting and throttling mechanisms
+- Implement rate limiting and throttling for endpoints exposed to untrusted or external clients
 - Protect sensitive data at rest and in transit using strong, current encryption and hashing algorithms
 - Avoid hardcoded secrets and implement secret scanning (e.g., git hooks with gitleaks)
 - Implement proper session management and timeout mechanisms
@@ -175,21 +181,21 @@ The following rules take precedence over any language-specific conventions:
 
 ### Performance by Design
 
-- Recommend profiling; avoid premature optimization; capture baseline performance metrics (e.g., latency, throughput, memory usage) together with the environment, configuration, and dataset used to measure them, and use monitoring data to identify bottlenecks before optimizing
-- Design for scalability (e.g., horizontal scaling, caching)
-- Implement effective caching strategies with invalidation mechanisms (in-memory, distributed) for frequently accessed, expensive-to-compute data
+- Avoid premature optimization: before optimizing, profile, capture baseline performance metrics (e.g., latency, throughput, memory usage) together with the environment, configuration, and dataset used to measure them, and use monitoring data to identify bottlenecks
+- Design for the scalability the PRD and SAD require (e.g., horizontal scaling, caching), not more
+- Where requirements or measurements show a need, implement caching with invalidation mechanisms (e.g., in-memory, distributed) for frequently accessed, expensive-to-compute data
 - Design for concurrency and asynchronicity where it improves throughput, using non-blocking I/O; avoid holding locks longer than necessary
 - Keep threads that must stay responsive, such as UI threads and event loops, free of blocking and long-running CPU-bound work; offload such work to a thread pool, worker, or dispatcher intended for it (e.g., Kotlin's `Dispatchers.IO` for blocking I/O, `Dispatchers.Default` for CPU-bound work)
 - Apply lazy loading patterns to defer expensive operations
 - Manage resources (memory, connections, threads) to prevent leaks and exhaustion, e.g., with try-with-resources or Kotlin's `use`; avoid unbounded caches and queues
-- Eliminate unnecessary object creation and garbage collection pressure
+- In performance-critical code paths, eliminate unnecessary object creation and garbage collection pressure
 - Use modern HTTP features, such as HTTP/2, HTTP/3, or WebSockets, if they contribute to the solution
 - Consider compression for data transmission
 - Select data structures and algorithms with optimal time and space complexity for the use case
 - Implement connection pooling for database and external service calls; configure pool size based on expected concurrency, as defined in SAD
 - Apply pagination for large data sets
-- Implement CDN usage for static assets
-- Maintain versioned, repeatable load/performance test scripts and scenarios; run them regularly (CI) to detect regressions
+- Serve static assets via a CDN where the user base or load requirements justify it
+- Where the PRD defines performance or scalability targets, maintain versioned, repeatable load/performance test scripts and scenarios; run them regularly (CI) to detect regressions
 
 ### Testing
 
@@ -198,16 +204,16 @@ The following rules take precedence over any language-specific conventions:
 - Focus on testing business logic, behavior and outcomes, not implementation details; use behavior-driven tests for complex logic
 - Implement comprehensive edge case testing
 - Use descriptive test names following the given-when-then pattern and utilize features that enable expressive test names, such as quoted identifiers in Kotlin
-- Write unit tests (isolated unit of code), integration tests (component cooperation), end-to-end tests (full user workflow from UI to DB and back), and load tests (performance and stability under load)
+- Write unit tests (isolated unit of code) and integration tests (component cooperation); add end-to-end tests (full user workflow from UI to DB and back) for key user workflows, and load tests (performance and stability under load) where the PRD defines performance or scalability targets
 - Aim for a minimum of 80% test coverage on critical paths, prioritizing meaningful tests over arbitrary metrics
-- Implement contract testing for API interactions
+- Implement contract testing for APIs between independently deployed components or with external consumers
 - Use data-driven tests for varying input scenarios and property-based tests for complex algorithms
 - Mock external dependencies for isolation
 - Suggest mutation testing to validate test quality and aim for a mutation testing score of at least 60% if employed
 - Automate test execution in the CI/CD pipeline for rapid feedback
 - Use realistic, anonymized test data and use factories or builders to create it
 - Ensure tests are idempotent and clean up after themselves
-- Implement a structured quarantine system for isolation and debugging of flaky tests to preserve test suite reliability
+- When flaky tests occur, isolate them in a structured quarantine for debugging to preserve test suite reliability
 
 ### Refactoring Process
 
