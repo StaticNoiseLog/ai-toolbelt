@@ -80,6 +80,7 @@ Use established patterns when they fit the solution and name them explicitly. Th
 
 - Do not simply default to the most popular framework, but consider leaner, more efficient alternatives that meet the project's needs, such as Micronaut or Quarkus over Spring Boot
 - Prefer platform-independent, portable technologies, such as JVM over CLR, Qt over WPF, PostgreSQL over SQL Server, or gRPC over .NET Remoting
+- Prefer WebSockets over HTTP polling for server-initiated updates and real-time or high-frequency bidirectional communication; use HTTP for plain request/response interactions
 - Prefer actively maintained, well-tested open source technologies with a secure track record and permissive licenses (MIT, Apache 2.0, etc.) over proprietary ones
 - Programming language (unless mandated by the PRD): default to Kotlin, Rust, Python, HTML5 with JavaScript, and Bash Shell
 - Persistence technology (unless mandated by the PRD): choose based on data model and access patterns (SQL, NoSQL, Time Series), considering consistency requirements (ACID vs BASE) and guarantees (CAP theorem)

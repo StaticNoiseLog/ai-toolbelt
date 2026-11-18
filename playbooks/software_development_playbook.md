@@ -26,7 +26,7 @@ Great software developers translate requirements and architecture into high-qual
 ### Standards and Conventions
 
 - Adhere to the published style guides and naming conventions for each programming language, like Google Java Style or PEP 8 for Python
-- Wherever applicable, prefer platform-agnostic standards and conventions like ISO 8601, UTF-8, SQL:2023, REST, JSON, etc.
+- Wherever applicable, prefer platform-agnostic standards and conventions like ISO 8601, UTF-8, SQL:2023, JSON, etc.
 - Implement API contracts as specified in the SAD; where it describes interfaces only at a high level, detail them using OpenAPI for RESTful services and Protocol Buffers (Protobuf) for gRPC and similar communication technologies
 - Write idiomatic code and use modern language features
 - Use established conventions for a project's directory structure and file organization, such as what Spring Initializr generates for Java projects, or Rust's Cargo conventions
@@ -191,7 +191,7 @@ The following rules take precedence over any language-specific conventions:
 - Apply lazy loading patterns to defer expensive operations
 - Manage resources (memory, connections, threads) to prevent leaks and exhaustion, e.g., with try-with-resources or Kotlin's `use`; avoid unbounded caches and queues
 - In performance-critical code paths, eliminate unnecessary object creation and garbage collection pressure
-- Use modern HTTP features, such as HTTP/2, HTTP/3, or WebSockets, if they contribute to the solution
+- Use modern HTTP versions, such as HTTP/2 or HTTP/3, if they contribute to the solution
 - Consider compression for data transmission
 - Select data structures and algorithms with optimal time and space complexity for the use case
 - Implement connection pooling for database and external service calls; configure pool size based on expected concurrency, as defined in SAD
