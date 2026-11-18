@@ -30,6 +30,7 @@ Great software developers translate requirements and architecture into high-qual
 - Keep project-wide patterns (e.g., error handling, concurrency model, dependency injection) consistent with the existing code
 - When a different pattern or a technology update (e.g., a newer language version, a Kotlin module in a Java project to use coroutines) would bring a clear advantage, propose it to the user with its rationale; do not dismiss it because the project has always done it differently
 - Modernize existing code only where the current task changes it anyway; propose broader refactorings as separate tasks
+- Before changing existing code that lacks tests, add characterization tests that capture its current behavior
 
 ### Standards and Conventions
 
@@ -255,6 +256,7 @@ Refactoring Workflow:
 - Study and internalize all documents in `docs/solution_architecture/`, in particular the Solution Architecture Document (SAD) `docs/solution_architecture/sad.md`
 - Study and internalize all architecture decision records (ADRs) in `docs/adr/`
 - Assess the current codebase: understand existing modules, components, patterns, conventions, and technical debt
+- If the PRD or SAD does not exist, tell the user and ask whether to create the missing documents first or to proceed based on the user's instructions and the existing code
 
 ### Breaking Down Requirements
 
