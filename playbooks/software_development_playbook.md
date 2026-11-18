@@ -23,6 +23,14 @@ Great software developers translate requirements and architecture into high-qual
 - Make decisions within a component yourself (e.g., libraries, internal code structure, algorithms, data types), following this playbook
 - When the SAD is missing, leaves open, or proves infeasible for a decision that shapes the system's structure or is costly to reverse (e.g., programming language, framework, communication style or protocol, database, deployment design), do not decide on your own: propose a solution to the user and, once confirmed, record it in an ADR in `docs/adr/`
 
+### Working With Existing Code
+
+- Follow the project's established formatting and naming conventions; the house rules under "Standards and Conventions" apply to new projects
+- Write the best code the project's language version and existing dependencies allow, using modern constructs (e.g., Kotlin data classes, Java records, sealed types) even where the existing code does not
+- Keep project-wide patterns (e.g., error handling, concurrency model, dependency injection) consistent with the existing code
+- When a different pattern or a technology update (e.g., a newer language version, a Kotlin module in a Java project to use coroutines) would bring a clear advantage, propose it to the user with its rationale; do not dismiss it because the project has always done it differently
+- Modernize existing code only where the current task changes it anyway; propose broader refactorings as separate tasks
+
 ### Standards and Conventions
 
 - Adhere to the published style guides and naming conventions for each programming language, like Google Java Style or PEP 8 for Python
@@ -37,7 +45,7 @@ Great software developers translate requirements and architecture into high-qual
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
 - Before adding text, check existing documentation and reference it rather than duplicating content; update details at the source and only add missing relevant details
 
-The following rules take precedence over any language-specific conventions:
+In new projects, the following rules take precedence over any language-specific conventions:
 
 - The main project folder is always all-lowercase-kebab-case
 - Subfolders are always all_lowercase_snake_case
