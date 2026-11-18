@@ -206,6 +206,7 @@ The following rules take precedence over any language-specific conventions:
 - Focus on testing business logic, behavior and outcomes, not implementation details; use behavior-driven tests for complex logic
 - Implement comprehensive edge case testing
 - Use descriptive test names following the given-when-then pattern and utilize features that enable expressive test names, such as quoted identifiers in Kotlin
+- Where practical, turn the acceptance tests and acceptance criteria in the PRD (e.g., Given-When-Then scenarios) into automated tests without changing their meaning, and reference the requirement ID in each (e.g., in the test name or a tag)
 - Write unit tests (isolated unit of code) and integration tests (component cooperation); add end-to-end tests (full user workflow from UI to DB and back) for key user workflows, and load tests (performance and stability under load) where the PRD defines performance or scalability targets
 - Aim for a minimum of 80% test coverage on critical paths, prioritizing meaningful tests over arbitrary metrics
 - Implement contract testing for APIs between independently deployed components or with external consumers
@@ -249,19 +250,20 @@ Refactoring Workflow:
 
 ### Breaking Down Requirements
 
-- Translate and break down requirements into actionable development tasks, such as coding specific endpoints, designing database tables, or building UI components
+- Translate and break down requirements into actionable development tasks, such as coding specific endpoints, designing database tables, or building UI components; reference the IDs of the requirements each task implements
 - Identify potential technical debt or refactoring tasks, including available dependency updates and security patches, but create and plan them only after consulting with the user and obtaining approval
 - Map each task to the corresponding architectural component (e.g., APIs, UI modules, database schemas)
 - Identify task dependencies and critical path items
-- Define acceptance criteria and identify testing requirements for each task
+- Define acceptance criteria and identify testing requirements for each task, deriving them from the acceptance criteria of the requirements it implements
+- When a requirement proves ambiguous, contradictory, or not verifiable, ask the user to have it clarified in the PRD; do not invent requirements or acceptance criteria
 - Request that the user assign each task a priority based on business value, dependencies, or critical path (e.g., prioritizing core functionality or MVP first), taking into account the implementation roadmap in the solution architecture, if present
 - For estimation purposes, assign each task a relative complexity value using a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100; have the user review and adjust these estimates
-- Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, with priority, complexity, and dependencies
+- Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, with requirement IDs, priority, complexity, and dependencies
 
 ### Task Implementation Process
 
 - Select the next task to implement based on the priorities established with the user
-- If a task's complexity exceeds 13, or if it introduces a new core dependency or architectural pattern, create a technical specification document in Markdown format in the folder `docs/development/` that outlines the problem with potential solutions, and have the user review it before proceeding with implementation
+- If a task's complexity exceeds 13, or if it introduces a new core dependency or architectural pattern, create a technical specification document in Markdown format in the folder `docs/development/` that references the requirements it addresses and outlines the problem with potential solutions, and have the user review it before proceeding with implementation
 - If necessary, suggest proof-of-concept (PoC) spikes for high-risk or technically uncertain features, including unverified technical premises listed in the SAD's "Review Focus" section, and evaluate implementation options through prototyping; document the PoC and the recommended approach in a technical specification in `docs/development/`; once the user confirms the approach, create an architecture decision record (ADR) in `docs/adr/` summarizing the decision and referencing the technical specification
 - If it does not exist, create the project structure with the known modules and components - or add new modules and components to the existing project structure
 - If it does not exist, set up the build system according to the project's needs for building, packaging and deployment - or update the existing build system to incorporate what is needed for the next task
@@ -278,7 +280,8 @@ Refactoring Workflow:
 - Perform linting and static code analysis (e.g., detekt) and resolve all warnings and errors through clean code; never suppress warnings (e.g., @Suppress); if no clean solution is apparent, ask the user for guidance
 - Perform functional, performance, and security testing based on requirements and quality attributes; make any necessary improvements
 - If tests reveal architectural shortcomings, revisit the SAD and propose updates
-- After reviewing the code yourself, present the changes to the user for review with a summary of what changed and why, and wait for feedback before starting the next task
+- Check that every requirement in the task's scope is implemented and verified, preferably by passing automated tests; report any gaps to the user
+- After reviewing the code yourself, present the changes to the user for review with a summary of what changed, why, and which requirements it addresses, and wait for feedback before starting the next task
 - After each task completion, update `docs/development/backlog.md` with "DONE" to mark completion
 
 ### Small Changes
