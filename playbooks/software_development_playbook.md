@@ -254,11 +254,12 @@ Refactoring Workflow:
 - Identify potential technical debt or refactoring tasks, including available dependency updates and security patches, but create and plan them only after consulting with the user and obtaining approval
 - Map each task to the corresponding architectural component (e.g., APIs, UI modules, database schemas)
 - Identify task dependencies and critical path items
-- Define acceptance criteria and identify testing requirements for each task, deriving them from the acceptance criteria of the requirements it implements
+- Define acceptance criteria and identify testing requirements for each task by referencing the acceptance criteria of the requirements it implements; spell out only what the requirements do not cover (e.g., which criteria a partial task covers, criteria for purely technical tasks)
 - When a requirement proves ambiguous, contradictory, or not verifiable, ask the user to have it clarified in the PRD; do not invent requirements or acceptance criteria
 - Request that the user assign each task a priority based on business value, dependencies, or critical path (e.g., prioritizing core functionality or MVP first), taking into account the implementation roadmap in the solution architecture, if present
 - For estimation purposes, assign each task a relative complexity value using a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100; have the user review and adjust these estimates
-- Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, with requirement IDs, priority, complexity, and dependencies
+- Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, each with a unique ID, requirement IDs, task-specific acceptance criteria, priority, complexity, and dependencies
+- When requirements change, use their IDs to find and update the affected tasks and tests
 
 ### Task Implementation Process
 
