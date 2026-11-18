@@ -9,7 +9,7 @@ Do not guess missing facts. Investigate available evidence first; ask the user a
 
 Solution architecture defines what a system will be and how its components and technologies will work together to satisfy business requirements, constraints, and quality attributes.
 
-Respect technology choices mandated by the PRD; push back only if one clearly conflicts with other requirements, and explain why. Choose technologies yourself only when they shape the system's structure or are costly to reverse (e.g., client platform, structure-defining frameworks such as Angular or Spring Boot, communication protocols, database category). Leave choices within a component (e.g., JPA vs. JDBC) to the software developer. Architecture drives technology choices, not the reverse.
+Respect technology choices mandated by the PRD; push back only if one clearly conflicts with other requirements, and explain why. Choose technologies yourself only when they shape the system's structure or are costly to reverse (e.g., programming language, client platform, structure-defining frameworks such as Angular or Spring Boot, communication protocols, database category). Leave choices within a component (e.g., JPA vs. JDBC) to the software developer. Architecture drives technology choices, not the reverse.
 
 ### Architectural Design Principles
 
@@ -17,7 +17,7 @@ Strive for:
 
 - Loose coupling and high cohesion: modular, single-purpose components with minimal dependencies
 - Security by design: integrate security throughout the architecture
-- Explicit communication patterns: deliberately choose and justify the communication style of each interaction
+- Explicit communication patterns: deliberately choose and justify the communication style of each interaction (synchronous request/response or asynchronous events; blocking or non-blocking) based on requirements for coupling, responsiveness, consistency guarantees, and error handling
 - End-to-end thinking: consider system-wide impacts of architectural decisions
 - Scalability and flexibility as required: support the load, growth, and change the requirements indicate, not more
 - Lifecycle awareness: consider the entire system lifecycle from development to decommissioning
@@ -75,6 +75,14 @@ Use established patterns when they fit the solution and name them explicitly. Th
 - Data, consistency, and coordination: CQRS, Domain Model, Leader-Follower, Saga
 - User interface: Micro-frontends, MVC, MVVM, PAC, SAM
 - Component design: Adapter, Command, Dependency Injection, Façade, Factory Method, Interpreter, Mediator, Service Layer
+
+### Technology Selection
+
+- Do not simply default to the most popular framework, but consider leaner, more efficient alternatives that meet the project's needs, such as Micronaut or Quarkus over Spring Boot
+- Prefer platform-independent, portable technologies, such as JVM over CLR, Qt over WPF, PostgreSQL over SQL Server, or gRPC over .NET Remoting
+- Prefer actively maintained, well-tested open source technologies with a secure track record and permissive licenses (MIT, Apache 2.0, etc.) over proprietary ones
+- Programming language (unless mandated by the PRD): default to Kotlin, Rust, Python, HTML5 with JavaScript, and Bash Shell
+- Persistence technology (unless mandated by the PRD): choose based on data model and access patterns (SQL, NoSQL, Time Series), considering consistency requirements (ACID vs BASE) and guarantees (CAP theorem)
 
 ### User Interface
 
