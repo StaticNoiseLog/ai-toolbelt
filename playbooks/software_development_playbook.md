@@ -80,7 +80,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Apply established design principles, such as SOLID, DRY, KISS, and YAGNI
 - Before writing new code, look for an existing helper, utility, or pattern in the codebase and reuse or extend it instead of writing a parallel implementation
 - Employ Dependency Injection (DI) or Inversion of Control (IoC) to manage dependencies where the framework or language supports it
-- Implement interactions between components using the communication styles and protocols defined in the SAD
+- Within a component (e.g., a producer and a consumer connected by an in-process queue), choose the communication style deliberately, considering options such as synchronous or asynchronous, blocking or non-blocking, fire-and-forget or acknowledged, and point-to-point or publish-subscribe, based on requirements for coupling, responsiveness, consistency guarantees, and error handling; for queues and channels, define what happens when they are full (e.g., block, block with a timeout, drop items, or reject with an error)
 - Adhere to best practices for REST APIs, and implement proper HTTP status codes and error responses
 - Design consistent request/response formats and optimize payloads for efficiency and security
 - Version APIs consumed by independently deployed clients, services, or third parties, using the versioning scheme defined in the SAD (default: URI path versioning for REST APIs)
@@ -90,7 +90,6 @@ In new projects, the following rules take precedence over any language-specific 
 - Limit cyclomatic complexity with available language features, e.g., avoid deep nesting through early returns and guard clauses
 - Avoid magic numbers and strings through named constants
 - Use appropriate design patterns to solve common problems (e.g., Gang of Four, Enterprise Integration Patterns) where they add clarity or flexibility
-- Implement architectural patterns (e.g., Microservices, CQRS, Event Sourcing, Hexagonal Architecture) as dictated by the SAD
 - Avoid overuse of shared state or globals
 - When two coding solutions are equally valid and clear, prefer the shorter one
 - Remove dead code, unused abstractions, and unnecessary boilerplate unless they support planned or active work
@@ -98,7 +97,6 @@ In new projects, the following rules take precedence over any language-specific 
 - Minimize comments by making code self-explanatory; document "why" not "what"
 - When a deliberate simplification has a known limit, document the constraint and the condition that would require a more robust solution
 - Write comments for the current code only; do not describe prior implementations or changes unless historical context is required for understanding (version control tracks history)
-- Implement graceful degradation for non-critical features as designed in the SAD
 - Write code that is easy to test, modify, extend and debug
 - Add extensible structures, such as abstractions, extension points, or configuration options, only where a requirement or the SAD calls for them or predicts change; avoid speculative generality
 - Avoid code smells such as god objects (classes with too many responsibilities), shotgun surgery (group related behavior or data under proper abstractions), feature envy (detect early and move behavior to the object that owns the data), primitive obsession (use domain-specific types), and non-exhaustive type-based switch statements (use polymorphism or exhaustive pattern matching over sealed types)
@@ -145,7 +143,6 @@ In new projects, the following rules take precedence over any language-specific 
 - Do not assume hardware, clocks, sensors, or networks behave ideally; account for drift, noise, calibration, latency, and failure where the system depends on them
 - For operations with expected transient failures (e.g., network calls), implement retries following the SAD's fault-tolerance design (e.g., retry limits, backoff); ensure idempotency to prevent disruptive or duplicative repeated executions, and log retries
 - Map application errors to meaningful messages or codes in one central place rather than ad hoc, and document the error codes
-- Implement logging, monitoring, and alerting as designed in the SAD
 - In systems with multiple services or asynchronous processing, add correlation IDs for request tracking, and propagate and log them; enable distributed tracing where the SAD or operational requirements call for it
 - Implement audit trails for critical actions as required by the PRD and SAD
 - For deployed services, implement health checks and expose key metrics (e.g., latency, traffic, errors, saturation)
@@ -164,7 +161,6 @@ In new projects, the following rules take precedence over any language-specific 
 - Make write operations safe to retry, regardless of protocol: honor the idempotency that the protocol or API contract defines (e.g., for HTTP PUT and DELETE); for all other operations whose effects must not be duplicated (e.g., payments, order creation), accept an idempotency key and enforce its uniqueness atomically with the operation's effect (e.g., through a unique constraint in the same database transaction)
 - For messaging, make handlers idempotent, include a unique message ID, track processed IDs, and assume at-least-once delivery with deduplication
 - When events must be published atomically with database changes, use the transactional outbox/inbox pattern and process them reliably with retries
-- Implement the backup and recovery approach defined in the SAD
 
 ### Security by Design
 
@@ -221,7 +217,6 @@ In new projects, the following rules take precedence over any language-specific 
 - Use data-driven tests for varying input scenarios and property-based tests for complex algorithms
 - Mock external dependencies for isolation, using the test seams defined in the SAD (e.g., replaceable adapters, injectable clocks)
 - Suggest mutation testing to validate test quality and aim for a mutation testing score of at least 60% if employed
-- Automate test execution in the CI/CD pipeline for rapid feedback
 - Use realistic, anonymized test data and use factories or builders to create it
 - Ensure tests are idempotent and clean up after themselves
 - When flaky tests occur, isolate them in a structured quarantine for debugging to preserve test suite reliability
