@@ -66,7 +66,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Default to the latest stable version of programming languages, frameworks, libraries and tools
 - Prefer actively maintained, well-tested open source libraries and frameworks with a secure track record and permissive licenses (MIT, Apache 2.0, etc.) over proprietary ones
 - Ensure the technology choice aligns with the project's requirements and long-term vision
-- Build system (unless specified in PRD/SAD): for JVM languages, always use Gradle with Kotlin DSL; for Rust, use Cargo; for JavaScript, default to Vite or Bun; for Python, default to pip with virtual environments (consider Poetry and pixi)
+- Build system (unless specified in PRD/SAD): for new JVM projects, always use Gradle with Kotlin DSL; for Rust, use Cargo; for JavaScript, default to Vite or Bun; for Python, default to uv
 - Consider the risk of dependency hell from transitive dependencies; use modern build system features to mitigate this, such as Gradle's version constraints or Cargo's `patch` feature
 - Expect Git as the version control system by default; the user performs all write operations (e.g., init, commit, branch, push), so perform them only when explicitly asked to; use read operations (e.g., log, diff, blame) whenever useful, such as to understand the history of code when fixing bugs
 
@@ -84,7 +84,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Adhere to best practices for REST APIs, and implement proper HTTP status codes and error responses
 - Design consistent request/response formats and optimize payloads for efficiency and security
 - Version APIs consumed by independently deployed clients, services, or third parties, using the versioning scheme defined in the SAD (default: URI path versioning for REST APIs)
-- Apply the functional and object-oriented paradigms diligently: Prefer writing code by composing pure functions and using immutable data structures; only create classes when true state is required
+- Apply the functional and object-oriented paradigms diligently: Prefer writing code by composing pure functions and using immutable data structures (e.g., records, data classes, value types); only create classes with mutable state when true state is required
 - In JavaScript, prefer objects and prototypal inheritance over the class keyword, unless an API or interoperability requirements strictly mandate its use
 - Favor composition over inheritance, but do not hesitate to implement inheritance where it truly reflects a natural hierarchy
 - Limit cyclomatic complexity with available language features, e.g., avoid deep nesting through early returns and guard clauses
@@ -101,7 +101,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Implement graceful degradation for non-critical features as designed in the SAD
 - Write code that is easy to test, modify, extend and debug
 - Add extensible structures, such as abstractions, extension points, or configuration options, only where a requirement or the SAD calls for them or predicts change; avoid speculative generality
-- Avoid code smells such as god objects (classes with too many responsibilities), shotgun surgery (group related behavior or data under proper abstractions), feature envy (detect early and move behavior to the object that owns the data), primitive obsession (use domain-specific types), and type-based switch statements (use polymorphism)
+- Avoid code smells such as god objects (classes with too many responsibilities), shotgun surgery (group related behavior or data under proper abstractions), feature envy (detect early and move behavior to the object that owns the data), primitive obsession (use domain-specific types), and non-exhaustive type-based switch statements (use polymorphism or exhaustive pattern matching over sealed types)
 - Avoid creating a distributed monolith where microservices are tightly coupled
 - Carefully analyze and choose the correct data types for each field in the data model; always consult the user when uncertain about data type selection
 
@@ -174,11 +174,11 @@ In new projects, the following rules take precedence over any language-specific 
 - Implement authentication, authorization, and encryption as specified in the SAD, using industry standards or established patterns, such as OAuth 2.0 and OpenID Connect, or magic link authentication; treat JWT as a token format, not an authentication mechanism
 - Implement rate limiting and throttling for endpoints exposed to untrusted or external clients
 - Protect sensitive data at rest and in transit using strong, current encryption and hashing algorithms
-- Avoid hardcoded secrets and implement secret scanning (e.g., git hooks with gitleaks)
+- Avoid hardcoded secrets; run secret scanning in the CI pipeline (e.g., gitleaks) and recommend a pre-commit hook to the user
 - Implement proper session management and timeout mechanisms
 - Apply the principles of least privilege and defense in depth
-- Use HTTPS with TLS 1.3 or higher and secure cipher suites to protect data in transit
-- Use secure headers (HSTS, CSP, X-Frame-Options, etc.) and enable them by default in web frameworks
+- Use HTTPS with the latest TLS version; allow older versions with secure cipher suites only where required clients do not support the latest version, and never versions deprecated by the IETF
+- Use secure headers (e.g., HSTS, CSP including `frame-ancestors`, X-Content-Type-Options) and enable them by default in web frameworks
 - Log and audit all security-relevant events to support the security monitoring and alerting defined in the SAD
 - Do not expose secrets or sensitive data (e.g., passwords, PII, tokens) in logs or error messages
 - Integrate Static Application Security Testing (SAST) into the CI/CD pipeline to scan code for vulnerabilities on every commit, and Software Composition Analysis (SCA) to scan third-party dependencies for known vulnerabilities
@@ -196,7 +196,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Where the SAD or measurements call for it, implement caching with invalidation mechanisms (e.g., in-memory, distributed) for frequently accessed, expensive-to-compute data
 - Design for concurrency and asynchronicity where it improves throughput, using non-blocking I/O; avoid holding locks longer than necessary
 - Keep threads that must stay responsive, such as UI threads and event loops, free of blocking and long-running CPU-bound work; offload such work to a thread pool, worker, or dispatcher intended for it (e.g., Kotlin's `Dispatchers.IO` for blocking I/O, `Dispatchers.Default` for CPU-bound work)
-- Apply lazy loading patterns to defer expensive operations
+- Apply lazy loading patterns to defer expensive operations whose results are often not needed, without causing N+1 query problems
 - Manage resources (memory, connections, threads) to prevent leaks and exhaustion, e.g., with try-with-resources or Kotlin's `use`; avoid unbounded caches and queues
 - In performance-critical code paths, eliminate unnecessary object creation and garbage collection pressure
 - Use modern HTTP versions, such as HTTP/2 or HTTP/3, if they contribute to the solution
@@ -292,7 +292,7 @@ Refactoring Workflow:
 - If tests reveal architectural shortcomings, revisit the SAD and propose updates
 - Check that every requirement in the task's scope is implemented and verified, preferably by passing automated tests; report any gaps to the user
 - After reviewing the code yourself, present the changes to the user for review with a summary of what changed, why, and which requirements it addresses, and wait for feedback before starting the next task
-- After each task completion, update `docs/development/backlog.md` with "DONE" to mark completion
+- After the user accepts the changes, mark the task as "DONE" in `docs/development/backlog.md`
 
 ### Small Changes
 
