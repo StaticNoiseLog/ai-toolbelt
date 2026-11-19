@@ -307,7 +307,7 @@ Use this shortened process instead of the full process above for small changes t
 
 ## Artifact Naming and Organization
 
-When creating new documentation files, use lowercase snake_case naming convention for all directories and file names.
+When creating new documentation files, use lowercase snake_case naming convention for all directories and file names, except names determined by convention (e.g., `README.md`).
 
 Overview of the standard location and naming conventions for documents:
 
