@@ -61,7 +61,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Technology choices made in the PRD or SAD are binding; choose other technologies following these guidelines, but propose architectural choices to the user as described under "Working Within the Architecture"; ask the user when the best choice is unclear
 - Do not simply default to the most popular library, but consider leaner, more efficient alternatives that meet the project's needs
 - Aim to keep the number of dependencies minimal to reduce complexity and potential security vulnerabilities; prefer the standard library, native platform capabilities, and existing project dependencies; add a new dependency only if it provides significant value, e.g., use Java records instead of adding Lombok
-- Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework
+- Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework, except for security-critical functions such as authentication, authorization, and cryptography
 - Prefer semantic HTML and CSS for UI state, interaction, and presentation; reserve JavaScript for data fetching, persistence, complex application logic, and behavior the browser cannot provide natively
 - Default to the latest stable version of programming languages, frameworks, libraries and tools
 - Prefer actively maintained, well-tested open source libraries and frameworks with a secure track record and permissive licenses (MIT, Apache 2.0, etc.) over proprietary ones
@@ -85,7 +85,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Design consistent request/response formats and optimize payloads for efficiency and security
 - Version APIs consumed by independently deployed clients, services, or third parties, using the versioning scheme defined in the SAD (default: URI path versioning for REST APIs)
 - Apply the functional and object-oriented paradigms diligently: Prefer writing code by composing pure functions and using immutable data structures (e.g., records, data classes, value types); only create classes with mutable state when true state is required
-- In JavaScript, prefer objects and prototypal inheritance over the class keyword, unless an API or interoperability requirements strictly mandate its use
+- In JavaScript, prefer plain objects and, where inheritance is warranted, prototypal inheritance over the class keyword, unless an API or interoperability requirements strictly mandate its use
 - Favor composition over inheritance, but do not hesitate to implement inheritance where it truly reflects a natural hierarchy
 - Limit cyclomatic complexity with available language features, e.g., avoid deep nesting through early returns and guard clauses
 - Avoid magic numbers and strings through named constants
@@ -184,7 +184,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Integrate Static Application Security Testing (SAST) into the CI/CD pipeline to scan code for vulnerabilities on every commit, and Software Composition Analysis (SCA) to scan third-party dependencies for known vulnerabilities
 - Suggest ways to perform Dynamic Application Security Testing (DAST) on running applications in staging environments
 - Address all critical vulnerabilities before release
-- Keep dependencies up to date and apply available security patches promptly
+- Check regularly for dependency updates and security patches, and propose them to the user promptly
 - Test code after updating dependencies or applying security patches
 - Add SBOM (Software Bill of Materials) generation if the ecosystem supports it
 
@@ -240,7 +240,7 @@ Refactoring Triggers:
 
 Refactoring Workflow:
 
-- Determine target code area based on triggers and priority
+- Determine target code area based on triggers and priority; refactor beyond the current task only after the user approves it as a separate task
 - Ensure the affected code is covered by tests that verify its current behavior; add characterization tests where they are missing
 - Use established refactoring patterns (e.g., Extract Method, Decompose Conditional, Extract Interface, Replace Conditional with Polymorphism)
 - Confirm all tests pass and performance metrics meet requirements
@@ -298,7 +298,7 @@ Refactoring Workflow:
 
 Use this shortened process instead of the full process above for small changes the user requests directly (e.g., a bug fix or minor adjustment) that stay within one component and do not alter public interfaces, data schemas, dependencies, or architectural decisions:
 
-- Study only the documents and code relevant to the change
+- Study the requirements and architecture documents as in the full process; focus on the code relevant to the change
 - Skip task breakdown, estimation, prioritization, and backlog updates
 - Implement using the Red-Green-Refactor cycle; for a bug fix, start with a test that reproduces the bug
 - Apply the "Quality Assurance" steps, including the user review
