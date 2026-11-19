@@ -64,6 +64,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Writing a custom-built solution is always a legitimate option if it is simpler than integrating a complex library or framework, except for security-critical functions such as authentication, authorization, and cryptography
 - Prefer semantic HTML and CSS for UI state, interaction, and presentation; reserve JavaScript for data fetching, persistence, complex application logic, and behavior the browser cannot provide natively
 - Default to the latest stable version of programming languages, frameworks, libraries and tools
+- Before coding against a library, framework, or external API, look up its latest version and usage in the official documentation; if the project uses an older version, propose an update before coding, pointing out breaking changes that would require major refactoring
 - Prefer actively maintained, well-tested open source libraries and frameworks with a secure track record and permissive licenses (MIT, Apache 2.0, etc.) over proprietary ones
 - Ensure the technology choice aligns with the project's requirements and long-term vision
 - Build system (unless specified in PRD/SAD): for new JVM projects, always use Gradle with Kotlin DSL; for Rust, use Cargo; for JavaScript, default to Vite or Bun; for Python, default to uv
@@ -81,7 +82,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Before writing new code, look for an existing helper, utility, or pattern in the codebase and reuse or extend it instead of writing a parallel implementation
 - Employ Dependency Injection (DI) or Inversion of Control (IoC) to manage dependencies where the framework or language supports it
 - Within a component (e.g., a producer and a consumer connected by an in-process queue), choose the communication style deliberately, considering options such as synchronous or asynchronous, blocking or non-blocking, fire-and-forget or acknowledged, and point-to-point or publish-subscribe, based on requirements for coupling, responsiveness, consistency guarantees, and error handling; for queues and channels, define what happens when they are full (e.g., block, block with a timeout, drop items, or reject with an error)
-- Adhere to best practices for REST APIs, and implement proper HTTP status codes and error responses
+- Adhere to best practices for REST APIs, and implement proper HTTP status codes and error responses (e.g., Problem Details, RFC 9457)
 - Design consistent request/response formats and optimize payloads for efficiency and security
 - Version APIs consumed by independently deployed clients, services, or third parties, using the versioning scheme defined in the SAD (default: URI path versioning for REST APIs)
 - Apply the functional and object-oriented paradigms diligently: Prefer writing code by composing pure functions and using immutable data structures (e.g., records, data classes, value types); only create classes with mutable state when true state is required
@@ -124,7 +125,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Implement proper artifact versioning and storage
 - Write a CI/CD pipeline that builds and tests the application automatically and deploys it to the environments defined in the SAD; default to GitHub Actions unless specified otherwise
 - Keep pipeline logic in build tool tasks or scripts that run the same way locally and in CI, with the CI configuration as a thin trigger; for complex or multi-language pipelines, consider Dagger (https://dagger.io/)
-- Ensure every deployment can be rolled back; implement the deployment strategy defined in the SAD (e.g., Blue-Green, Canary), including automated rollback where it calls for it
+- Implement the deployment and rollback strategy defined in the SAD (e.g., Blue-Green, Canary, automated rollback)
 - For deployed services, provision their environments with infrastructure as code to avoid deployment snowflakes
 
 ### Managing Cross-Cutting Concerns
@@ -143,13 +144,14 @@ In new projects, the following rules take precedence over any language-specific 
 - Do not assume hardware, clocks, sensors, or networks behave ideally; account for drift, noise, calibration, latency, and failure where the system depends on them
 - For operations with expected transient failures (e.g., network calls), implement retries following the SAD's fault-tolerance design (e.g., retry limits, backoff); ensure idempotency to prevent disruptive or duplicative repeated executions, and log retries
 - Map application errors to meaningful messages or codes in one central place rather than ad hoc, and document the error codes
-- In systems with multiple services or asynchronous processing, add correlation IDs for request tracking, and propagate and log them; enable distributed tracing where the SAD or operational requirements call for it
+- In systems with multiple services or asynchronous processing, add correlation IDs for request tracking, and propagate and log them; enable distributed tracing (e.g., with OpenTelemetry) where the SAD or operational requirements call for it
 - Implement audit trails for critical actions as required by the PRD and SAD
 - For deployed services, implement health checks and expose key metrics (e.g., latency, traffic, errors, saturation)
 
 ### Data and Persistence Guidelines
 
 - Use a database schema migration tool, preferably Atlas or dbmate, to design and manage database schemas, and store the schema files in the folder `db/`
+- Where the SAD requires rollback-capable deployments, make schema migrations backward compatible with the previous application version (e.g., expand-and-contract)
 - Enforce data integrity constraints, but do not implement business logic in the database layer, such as stored procedures or triggers, unless explicitly requested by the user
 - Design efficient database interactions: use proper foreign key relationships and indexing, batch operations, avoid N+1 query problems, and fetch only the data needed
 - Design normalized database schemas for SQL databases to reduce data redundancy; denormalize for performance if justified and explicitly requested by the user; design NoSQL schemas for read efficiency based on query patterns
@@ -286,6 +288,7 @@ Refactoring Workflow:
 - Perform functional, performance, and security testing based on requirements and quality attributes; make any necessary improvements
 - If tests reveal architectural shortcomings, revisit the SAD and propose updates
 - Check that every requirement in the task's scope is implemented and verified, preferably by passing automated tests; report any gaps to the user
+- Keep changes focused on the current task, without unrelated modifications; before presenting them, run the build, tests, and static analysis, and include the results in the summary
 - After reviewing the code yourself, present the changes to the user for review with a summary of what changed, why, and which requirements it addresses, and wait for feedback before starting the next task
 - After the user accepts the changes, mark the task as "DONE" in `docs/development/backlog.md`
 

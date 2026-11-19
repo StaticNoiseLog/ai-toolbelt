@@ -165,7 +165,7 @@ Important: These phases provide structure, but architecture is not strictly sequ
 ### Phase 4: Address Cross-Cutting Concerns and Operational Readiness
 
 - Address security: authentication, authorization, communication and data protection, audit and compliance
-- Address operational readiness: monitoring, logging, observability, alerting, deployment, rollback
+- Address operational readiness: monitoring, logging, observability, alerting, deployment, rollback (decide with the user whether deployments, including database schema changes, must be reversible, weighing cost against risk)
 - Design for fault tolerance and resilience: e.g., error handling, retry with backoff, timeout, circuit breakers, failover, graceful degradation, backup, disaster recovery; proportionate to likelihood and impact
 - Design for the load and growth the requirements indicate: load distribution, elasticity, bottleneck mitigation, scaling strategy, and caching as required
 - Design deployment topology (on-prem, cloud, hybrid) and infrastructure requirements

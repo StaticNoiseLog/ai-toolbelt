@@ -46,7 +46,7 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 - usability (error messages, localization, accessibility, documentation, aesthetics, etc.)
 - maintainability (audit logs, automatic clean-up, acceptable response time for support, etc.)
 - operability (monitoring, alarming, tolerable disk/CPU/memory utilization, etc.)
-- reliability (backup/recovery, failover, resilience, data consistency, etc.)
+- reliability (backup/recovery, failover, resilience, data consistency, deployment rollback, etc.)
 - availability (mean time between failures, SLA, etc.)
 - configurability (runtime configuration, scripting, business rules, etc.)
 - modifiability (predictable hotspots for change, etc.)
