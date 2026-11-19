@@ -49,7 +49,7 @@ Great software developers translate requirements and architecture into high-qual
 In new projects, the following rules take precedence over any language-specific conventions:
 
 - The main project folder is always all-lowercase-kebab-case
-- Subfolders are always all_lowercase_snake_case
+- Subfolders are all_lowercase_snake_case, unless their name is determined by a language, framework, or tool (e.g., package directories, `buildSrc`, `META-INF`)
 - If uppercase acronyms appear in identifiers, enforce CamelCase, e.g., `HttpClient`, not `HTTPClient` or `getHttpHeaders()`, not `getHTTPHeaders()`
 - For JavaScript, write semicolon-free code, structuring statements to avoid ASI (Automatic Semicolon Insertion) issues by keeping expressions like return values on the same line
 - Default to single quotes in JavaScript, use double quotes only where required (e.g., JSON, JSX, interoperability)
@@ -109,12 +109,11 @@ In new projects, the following rules take precedence over any language-specific 
 
 - Create and update a `README.md` file in the root directory that describes the project, its purpose, how to set it up, and how to run it
 - Organize code by feature, component or domain, not by technical type (e.g., group UserController, UserService, and UserRepository in a 'user' module)
-- Keep related code co-located (e.g., tests with source code)
 - Maintain a clear separation between application/domain logic and infrastructure/framework code (e.g., Hexagonal Architecture)
-- Implement clear module boundaries by encapsulating internal implementation details and exposing only stable, well-defined public interfaces. Always achieve this using language-level module systems where available: the Rust module system for Rust, JPMS for Java and Kotlin, and ECMAScript Modules (ESM) for JavaScript
+- Implement clear module boundaries by encapsulating internal implementation details and exposing only stable, well-defined public interfaces. Enforce these boundaries with language-level module systems where the language and frameworks support them (e.g., the Rust module system, ECMAScript Modules (ESM) for JavaScript, JPMS for Java and Kotlin); otherwise enforce them with architecture tests (e.g., ArchUnit)
 - Do not create circular dependencies between modules
-- Higher-level modules should depend only on lower-level ones, not vice versa
-- Follow established conventions for test organization
+- Direct dependencies toward stable abstractions: express what domain logic needs from infrastructure (e.g., persistence) as interfaces or traits in domain terms, free of technology details; domain code depends only on these abstractions, and infrastructure code implements them, so that replacing a technology (e.g., a relational with a NoSQL database) does not change domain code
+- Follow established conventions for test organization (e.g., mirrored packages under `src/test` in Gradle projects, unit tests in the same file in Rust)
 - Use .gitignore files to exclude unnecessary files
 
 ### Build and Deployment
@@ -133,13 +132,13 @@ In new projects, the following rules take precedence over any language-specific 
 ### Managing Cross-Cutting Concerns
 
 - Internationalization and Localization (unless specified in PRD/SAD): default to US English; introduce multi-language capabilities only if explicitly stated
-- Accessibility: Follow WCAG 2.1 AA standards for web applications; ensure keyboard navigation, screen reader compatibility, and color contrast
+- Accessibility: For web applications, follow the latest WCAG version published as a W3C Recommendation (not a draft) at conformance level AA or its equivalent; ensure keyboard navigation, screen reader compatibility, and color contrast
 - If there are de facto standards for cross-cutting concerns in an ecosystem, use them (such as SLF4J and Micrometer for Spring Boot)
 - Implement externalized, type-safe configuration, injected at runtime and validated on startup; use hierarchical environment overlays for each environment the application runs in (e.g., dev, test, prod)
 - Keep secret configuration values out of version-controlled files (e.g., inject them via environment variables or a secret store); add configuration rollback, monitoring and alerting on configuration changes, and drift detection between environments where the SAD or operational requirements call for them
 - Where requirements call for configuration changes without a restart, support dynamic reloading and validate configuration on reload
 - Document all configuration settings and their purposes, preferably directly in the configuration store, otherwise in `docs/development/configuration.md`; for parameters defined in the SAD, reference the SAD instead of repeating their values and rationale
-- Logging (unless specified in PRD/SAD): default to the RFC 5424 syslog message format; avoid structured formats like JSON unless explicitly requested
+- Logging (unless specified in PRD/SAD): default to the RFC 5424 syslog message format, carrying context such as correlation IDs in its structured data elements; avoid other structured formats like JSON unless explicitly requested
 - Log meaningful information at appropriate levels; use lazy or deferred logging and avoid excessive logging in hot paths
 - Design proper exception hierarchies and error classifications, differentiating between recoverable and non-recoverable errors, and handle errors consistently using modern language features (e.g., try-with-resources, multi-catch, sealed types with exhaustive pattern matching, Rust's `?` operator)
 - Ensure error handling prevents data loss at persistence and other irreversible boundaries
@@ -242,7 +241,7 @@ Refactoring Triggers:
 Refactoring Workflow:
 
 - Determine target code area based on triggers and priority
-- Ensure at least 80% test coverage before refactoring
+- Ensure the affected code is covered by tests that verify its current behavior; add characterization tests where they are missing
 - Use established refactoring patterns (e.g., Extract Method, Decompose Conditional, Extract Interface, Replace Conditional with Polymorphism)
 - Confirm all tests pass and performance metrics meet requirements
 - Reflect changes in relevant documentation; if the refactoring would change the architecture, propose it to the user first (see "Working Within the Architecture")
