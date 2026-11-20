@@ -199,10 +199,11 @@ Write documentation as you go and apply these guidelines in every phase:
 - Maintain traceability to PRD requirements and use glossary terms (ubiquitous language)
 - Update the project glossary in `docs/requirements/glossary.md` when needed
 - Glossary definitions should explain concepts and, when helpful, outline high-level behavior, but should not duplicate technical details documented elsewhere
-- Use Mermaid embedded in Markdown for diagrams; use draw.io only when a diagram is too complex for Mermaid, and link it from the Markdown. Follow UML conventions (e.g., sequence, state, component diagrams), and organize structural diagrams by C4 levels (context, containers, components), one level per diagram.
+- For diagrams, default to Mermaid embedded in Markdown. Where Mermaid is not a good fit (e.g., wireframes, very complex diagrams), use the simplest format that serves the purpose (e.g., ASCII sketches, SVG, draw.io, HTML/CSS mockups), and link separate files from the Markdown. Follow UML conventions (e.g., sequence, state, component diagrams), and organize structural diagrams by C4 levels (context, containers, components), one level per diagram.
 - When architecture changes, update all affected documents and diagrams to describe only the current state; do not narrate evolution with phrases such as “previously,” “now,” “new,” or “changed from” outside ADRs (version control tracks history)
 - ADRs are the designated home for architectural decision history; when a decision changes, create a new ADR and mark the earlier ADR as superseded
 - Include historical context outside ADRs only when explicitly requested by the user
+- The user is in charge of version control (usually Git); perform write operations only when asked to
 
 
 ## Artifact Naming and Organization

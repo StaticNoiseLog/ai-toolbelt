@@ -22,6 +22,7 @@ Great software developers translate requirements and architecture into high-qual
 - Implement the structure, technologies, communication styles, data architecture, security approach, and operational design defined in the SAD and ADRs as specified
 - Make decisions within a component yourself (e.g., libraries, internal code structure, algorithms, data types), following this playbook
 - When the SAD is missing, leaves open, or proves infeasible for a decision that shapes the system's structure or is costly to reverse (e.g., programming language, framework, communication style or protocol, database, deployment design), do not decide on your own: propose a solution to the user and, once confirmed, record it in an ADR in `docs/adr/`
+- Write ADRs with rationale and considered alternatives; when a decision changes, create a new ADR and mark the earlier one as superseded
 
 ### Working With Existing Code
 
@@ -69,7 +70,7 @@ In new projects, the following rules take precedence over any language-specific 
 - Ensure the technology choice aligns with the project's requirements and long-term vision
 - Build system (unless specified in PRD/SAD): for new JVM projects, always use Gradle with Kotlin DSL; for Rust, use Cargo; for JavaScript, default to Vite or Bun; for Python, default to uv
 - Consider the risk of dependency hell from transitive dependencies; use modern build system features to mitigate this, such as Gradle's version constraints or Cargo's `patch` feature
-- Expect Git as the version control system by default; the user performs all write operations (e.g., init, commit, branch, push), so perform them only when explicitly asked to; use read operations (e.g., log, diff, blame) whenever useful, such as to understand the history of code when fixing bugs
+- The user is in charge of version control (usually Git); perform write operations only when asked to
 
 ### Code Quality and Craftsmanship
 
@@ -261,8 +262,8 @@ Refactoring Workflow:
 - Map each task to the corresponding architectural component (e.g., APIs, UI modules, database schemas)
 - Identify task dependencies and critical path items
 - Define acceptance criteria and identify testing requirements for each task by referencing the acceptance criteria of the requirements it implements; spell out only what the requirements do not cover (e.g., which criteria a partial task covers, criteria for purely technical tasks)
-- When a requirement proves ambiguous, contradictory, or not verifiable, ask the user to have it clarified in the PRD; do not invent requirements or acceptance criteria
-- Request that the user assign each task a priority based on business value, dependencies, or critical path (e.g., prioritizing core functionality or MVP first), taking into account the implementation roadmap in the solution architecture, if present
+- When a requirement proves ambiguous, contradictory, or not verifiable, or implementation reveals missing details, ask the user to have the PRD updated; do not invent requirements or acceptance criteria
+- Request that the user assign each task a priority, taking into account the MoSCoW priorities of the requirements it implements, dependencies, critical path, and the implementation roadmap in the SAD, if present; do not create tasks for Won't-have requirements
 - For estimation purposes, assign each task a relative complexity value using a modified Fibonacci sequence: 1, 2, 3, 5, 8, 13, 20, 40, 100; have the user review and adjust these estimates
 - Create or update the task backlog file `docs/development/backlog.md` so that it includes all known tasks, each with a unique ID, requirement IDs, task-specific acceptance criteria, priority, complexity, and dependencies
 - When requirements change, use their IDs to find and update the affected tasks and tests
@@ -282,7 +283,7 @@ Refactoring Workflow:
 - Ask yourself: "Would a senior engineer be satisfied with this - or is it overly complicated, too simple, or incomplete?" If not, revise accordingly
 - When debugging or reviewing code, read it line by line rather than relying solely on function or class names to infer behavior
 - For bug fixes, identify the root cause, trace affected callers and flows, and correct the shared source of the defect rather than patching individual symptoms
-- Keep all documentation up-to-date as the code evolves, in particular all documents in `docs/` and its subdirectories and `README.md`
+- Keep all documentation up-to-date as the code evolves, in particular all documents in `docs/` and its subdirectories and `README.md`; describe only the current state, not how it evolved (version control tracks history)
 - Ensure readability, maintainability, and performance without deviating from the architecture
 - Perform linting and static code analysis (e.g., detekt) and resolve all warnings and errors through clean code; never suppress warnings (e.g., @Suppress); if no clean solution is apparent, ask the user for guidance
 - Perform functional, performance, and security testing based on requirements and quality attributes; make any necessary improvements
@@ -306,6 +307,8 @@ Use this shortened process instead of the full process above for small changes t
 ## Artifact Naming and Organization
 
 When creating new documentation files, use lowercase snake_case naming convention for all directories and file names, except names determined by convention (e.g., `README.md`).
+
+For diagrams, default to Mermaid embedded in Markdown. Where Mermaid is not a good fit (e.g., wireframes, very complex diagrams), use the simplest format that serves the purpose (e.g., ASCII sketches, SVG, draw.io, HTML/CSS mockups), and link separate files from the Markdown.
 
 Overview of the standard location and naming conventions for documents:
 

@@ -19,7 +19,7 @@ Requirements engineering is the systematic discipline of discovering, analyzing,
 ### Embrace Change
 
 - Requirements evolve - this is normal
-- Put requirements under version control
+- The user is in charge of version control (usually Git); perform write operations only when asked to
 - Be agile enough to handle changing requirements
 
 ### Economy Without Carelessness
@@ -175,6 +175,8 @@ The following are standard names for key documents:
 The result is a Product Requirements Document (PRD) containing all requirements in the selected forms, all complying with minimum requirements standard. Also contains pointer to project glossary.
 
 The PRD is a Markdown file and can contain requirements directly or reference external locations like files and URLs. Each requirement's ID must be mentioned in the PRD.
+
+Default to Markdown for requirements text; create or accept any other format that captures a requirement best, and agree with the user where to store such artifacts.
 
 The PRD begins with the project name and a concise statement of its purpose.
 
